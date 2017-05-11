@@ -2,7 +2,7 @@
 
   {% for page in site.pages %}
     {% if page.title and page.menu == true %}
-      <li>
+      <li id="{{ page.id }}">
         <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a>
       </li>
     {% endif %}

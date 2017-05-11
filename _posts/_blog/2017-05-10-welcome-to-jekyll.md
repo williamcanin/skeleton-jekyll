@@ -19,7 +19,10 @@ ga_event: false
 script_html: [search.html]
 ---
 
-Hi! 
+* Table Of Contents
+{:toc}
+
+Hi!
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -27,7 +30,7 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 {% fa fa-code|20px %} Jekyll also offers powerful support for code snippets: 
 
-{% highlight ruby linenos %}
+{% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
@@ -37,18 +40,18 @@ print_hi('Tom')
 
 Check out the [Jekyll docs][jekyll-docs]{:target="_blank"} for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]{:target="_blank"}. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk]{:target="_blank"}.
 
-# Examples:
+# Examples
 <br>
 **Titles with icon - Plugin Fa**
 
-{% fa fa-table|20px %} **Table:**   
+## {% fa fa-table|20px %} Table
 
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 
-{% fa fa-list|20px %} **List:**
+## {% fa fa-list|20px %} List
 
 - [x] @mentions, #refs, [links](){:target="_blank"}, **formatting**, and <del>tags</del> supported
 - [x] list syntax required (any unordered or ordered list supported)
@@ -71,7 +74,7 @@ Content in the first column | Content in the second column
 > We're living the future so
 > the present is our past.
 
-{% fa fa-file-image-o|20px %} **Image responsive plugin (Imager)**
+## {% fa fa-file-image-o|20px %} Image responsive (plugin Imager)
 
 {% imager example.png|center %}
 
@@ -103,11 +106,11 @@ Commodi eaque, temporibus quia praesentium dolores repellat minus corporis illo 
 <br>
 <br>
 
-**Code in one line - Text:**
+## Code in one line - Text
 
 `Featured`
 
-**Unlighted code:**
+## Unlighted code
 
 ``` javascript
 function fancyAlert(arg) {
@@ -117,16 +120,12 @@ function fancyAlert(arg) {
 }
 ```
 
-
 [jekyll-docs]: https://jekyllrb.com/docs/home 
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
 
 <br>
 
-Goodbye!
+Goodbye! :wink:
 
 {% endpost #9D9D9D %}
-
-
-

@@ -1,4 +1,8 @@
-[] OnePage habilitar / desabilitar
-[x] Gulpfile para minificar javascripts
-[] Tags
-[x] Simple Search Jekyll adicionar
+[] comentar bastante no html
+[] onepage habilitar / desabilitar
+[x] gulpfile para minificar javascripts
+[] tags
+[] categorias
+[] google page view
+[x] indice plugins
+[x] simple Search Jekyll adicionar

@@ -29,6 +29,15 @@ website:
       onfocus: "Search by: title or tags"
       onblur: ['Search','article(s)']
       notfound: "Oh heavens, no results :("
+  postlist:
+    header:
+      style: text # Use: text | art
+      text:
+        title: Blog
+        subtitle: Welcome to blog.
+      art:
+        title: Blog
+        subtitle: Welcome to blog.
   post:
     author:
       image:

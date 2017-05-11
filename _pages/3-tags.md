@@ -1,7 +1,7 @@
 ---
 layout: null
-title: Home
-id: homelink
+title: Tags
+id: taglink
 
 # Enable / Disable this page in the main menu.
 menu: true
@@ -10,10 +10,11 @@ menu: true
 published: true
 
 # Does not change and does not remove 'script_js' variables
-script_js:
+script_js: [postlist.min.js, jekyll-search.min.js]
 
-# Does not change and does not remove 'script_html' variables
-script_html:
+# Does not change and does not remove 'include' variables
+script_html: [search.html]
 
-permalink: /
+permalink: /blog/tags/
 ---
+

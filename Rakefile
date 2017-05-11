@@ -20,6 +20,18 @@ namespace :post do
 end
 
 
+desc "Disable/Enable presentation page"
+namespace :prepage do
+  task :true do
+    confs = Main.new
+    confs.presentation_page(true)
+  end
+  task :false do
+    confs = Main.new
+    confs.presentation_page(false)
+  end
+end
+
 # Default configuration
 def ask(message, valid_options)
   if valid_options

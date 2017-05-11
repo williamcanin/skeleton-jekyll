@@ -1,6 +1,7 @@
 ---
 layout: about
 title: About
+id: aboutlink
 
 # Enable / Disable this page in the main menu.
 menu: true

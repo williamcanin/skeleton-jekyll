@@ -1,6 +1,7 @@
 ---
 layout: contact
 title: Contact
+id: contactlink
 
 # Enable / Disable this page in the main menu.
 menu: true

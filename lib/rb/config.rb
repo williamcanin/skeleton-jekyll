@@ -6,6 +6,8 @@
 # Author : William C. Canin <http://williamcanin.com>
 # Description: Script management.
 
+require "fileutils"
+
 # Class to set global variables
 class Variables
 
@@ -75,5 +77,56 @@ Example: rake post:blog TITLE=\"My post\"")
     end
 
   end # End 'post_create'
+
+  def create_folders (options = [])
+    FileUtils::mkdir_p options
+  end
+
+  def remove_folders (options = [])
+    FileUtils::rmdir options
+  end
+
+  def create_redirect_page(filename)
+    File.open(filename, 'w') do |file|
+      file.puts "<!DOCTYPE html>"
+      file.puts "<html>"
+      file.puts "<head>"
+      file.puts "  <meta http-equiv=\"refresh\" content=\"0; url=/\">"
+      file.puts "  <title>Redirect</title>"
+      file.puts "</head>"
+      file.puts "</html>"
+    end
+  end
+
+  def presentation_page(value)
+    if value == true
+
+      remove_folders(["blog/"])
+
+      blog_page = File.read("_pages/2-blog.md")
+      blog_page.gsub!("published: false", "published: #{value}")
+      blog_page.gsub!("menu: false", "menu: #{value}")
+      File.write("_pages/2-blog.md", blog_page)
+
+      indexmd = File.read("index.md")
+      indexmd.gsub!("layout: postlist", "layout: home")
+      File.write("index.md", indexmd)
+
+    elsif value == false
+
+      create_folders(["blog/"])
+      create_redirect_page("blog/index.html")
+
+      blog_page = File.read("_pages/2-blog.md")
+      blog_page.gsub!("published: true", "published: #{value}")
+      blog_page.gsub!("menu: true", "menu: #{value}")
+      File.write("_pages/2-blog.md", blog_page)
+
+      indexmd = File.read("index.md")
+      indexmd.gsub!("layout: home", "layout: postlist")
+      File.write("index.md", indexmd)
+
+    end
+  end
 
 end
