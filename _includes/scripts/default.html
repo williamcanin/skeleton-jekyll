@@ -1,0 +1,44 @@
+<!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<!-- Script JS specific for each pages
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+{% for script_js in page.script_js %}
+   <script type="text/javascript" src="{{ '/assets/js/' | prepend: site.baseurl | prepend: site.url  | append: script_js }}"></script>
+{% endfor %}
+
+
+<!-- Script HTML specific for each pages
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+{% for script_html in page.script_html %}
+   {% include scripts/{{script_html}} %}
+{% endfor %}
+
+
+<!-- Add 'ga' function from Google Analytics to certain links in Posts.
+     Event tracking in Google Analytics
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+{% if dbase.website.google.analytics.events == true %}
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+
+    $('.post > .row.content a').addClass('ga-event');
+
+    $('.post > .row.content li a').removeClass('ga-event');
+
+    $('a.ga-event').attr('onclick', 'ga(\'send\',\'event\',\'linkTo\',this.href,\'{{ site.url }}{{ site.baseurl }}{{ page.url }}\');');
+
+  });
+</script>
+{% endif %}
+
+<!-- Global script - Not conflict
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="{{ '/assets/js/global.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+
+
+

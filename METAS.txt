@@ -1,0 +1,4 @@
+[] OnePage habilitar / desabilitar
+[x] Gulpfile para minificar javascripts
+[] Tags
+[x] Simple Search Jekyll adicionar

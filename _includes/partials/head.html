@@ -1,0 +1,97 @@
+  <!-- Head Include
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<head>
+
+  <!-- Title Site
+  ___________________________________________ -->
+
+  <title>{% if page.title %}{{ page.title }} | {{ loadData.website.title }} {% else %} {{ loadData.website.title }} | {{ loadData.website.description }} {% endif %}</title>
+
+
+  <!-- Metatags
+  ___________________________________________ -->
+
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name=description content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ loadData.website.description }}{% endif %}">
+
+  <meta name=viewport content="width=device-width, initial-scale=1">
+
+  {% if loadData.website.metatag.google-site-verification %}
+  <meta name="google-site-verification" content="{{ loadData.website.metatag.google-site-verification }}">
+  {% endif %}
+
+  {% if loadData.website.metatag.expires %}
+  <meta http-equiv="expires" content="{{ loadData.website.metatag.expires }}">
+  {% endif %}
+
+  {% if loadData.website.metatag.cache-control %}
+  <meta http-equiv="cache-control" content="{{ loadData.website.metatag.cache-control }}"/>
+  {% else %}
+  <meta http-equiv="cache-control" content="public"/>
+  {% endif %}
+
+  <meta http-equiv="pragma" content="public">
+
+  <meta name="keywords" content="{{ loadData.website.metatag.tags }}" />
+
+  <meta name="author" content="{{ loadData.website.strings.post.author.name }}" />
+
+  <meta property="og:locale" content="{{ loadData.website.metatag.locale }}" />
+
+  <meta property="og:site_name" content="{{ loadData.website.title }}" />
+
+  <meta property="og:type" content="{{ loadData.website.metatag.type }}" />
+
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}" />
+
+  <meta property="og:description" content="{{ loadData.website.description }}" />
+
+  <meta property="og:title" content="{{ page.title }} - {{ loadData.website.title }}" />
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+  <link rel="alternate" type="application/rss+xml" title="{{ loadData.website.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+
+  {% if page.url == "/404.html" and loadData.website.metatag.refresh-time %}
+  <meta http-equiv="refresh" content="{{ loadData.website.metatag.refresh-time }}; url={{ site.url }}{{ site.baseurl }}/">
+  {% endif %}
+
+    <!-- Scripts
+  ___________________________________________ -->
+
+  <script type="application/ld+json">
+    {"@context": "http://schema.org",
+    "@type": "{{ loadData.website.metatag.type }}",
+    "name": "{{ loadData.website.strings.post.author.name }}",
+    "headline": "{{ loadData.website.title }}",
+    "author": {"@type": "Person",
+    "name": {"{{ loadData.website.title }}"}},
+    "description": "{{ loadData.website.description }}",
+    "url": "{{ site.url }}{{ site.baseurl }}"}
+  </script>
+
+  <script type="text/javascript">
+  var GLOBAL_BASEURL = "{{ site.url }}{{ site.baseurl }}";
+  </script>
+
+  <!-- Stylesheets
+  ___________________________________________ -->
+
+  <!-- Favicon -->
+  {% if loadData.website.favicon %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon' | prepend: site.baseurl | prepend: site.url }}/{{ loadData.website.favicon }}">
+  {% endif %}
+
+  <!-- Main -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl | prepend: site.url }}">
+
+
+  <!-- Google Analytics
+  ___________________________________________ -->
+  {% include scripts/google_analytics.html %}
+
+</head>

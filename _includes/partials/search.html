@@ -1,0 +1,19 @@
+ <!-- Search HTML
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- Counter posts -->
+{% for post in site.categories.blog %}
+  {% capture post_count %} {{ post_count | plus: 1 }} {% endcapture %}
+{% endfor %}
+
+<form action="" name="searchForm" id="searchForm">
+
+  <div class="input-group">
+    <input class="form-control search-input" type="text" id="search-input" value="" placeholder="{{ loadData.website.search.input.placeholder[0] }} {{ post_count }} {{ loadData.website.search.input.placeholder[1] }}" onfocus="this.placeholder = '{{ loadData.website.search.input.onfocus }}'" onblur="this.placeholder = '{{ loadData.website.search.input.onblur[0] }} {{ post_count }} {{ loadData.website.search.input.onblur[1] }}'">
+  </div>
+
+  <div class="searchResults">
+    <ul class="searchResult" id="searchResult"></ul>
+  </div>
+
+</form>

@@ -1,0 +1,1 @@
+{% assign loadData = site.data.data %}

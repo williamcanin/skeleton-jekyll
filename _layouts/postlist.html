@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<!-- Include Liquid _data/data
+___________________________________________ -->
+{% include liquid/data %}
+
+<div class="postlist" itemscope="itemscope" itemtype="http://schema.org/Blog">
+
+  <!-- Include search input
+  ________________________________________________ -->
+  {% include partials/search.html %}
+
+  <div class="row title-description">
+    <h1>{{ page.title }}</h1>
+  </div>
+
+  <div class="row content">
+    {% for post in site.categories.blog %}
+    <div class="wrap">
+      <div class="time-and-count-comments" datetime="{{ post.date | date:'%Y-%m-%d' }}">
+        <time class="time">
+          {% datelang post %}
+          {% include datelang/post %}
+        </time>
+        {% if post.comments and loadData.userdata.disqus.username %}
+          <div class="count-comments">
+            <span class="disqus-comment-count" data-disqus-identifier="{{ post.url }}">0</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="url">
+        <h1>
+          <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        </h1>
+        {% if post.excerpted %}<p class="excerpted">{{ post.excerpted | strip_html | truncatewords:26 }}<a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" class="continue">{{ loadData.website.strings.postlist.continue }}</a></p>{% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

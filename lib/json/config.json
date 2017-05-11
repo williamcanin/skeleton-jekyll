@@ -1,0 +1,18 @@
+{
+  "sources":{
+    "js":{
+      "dir": "./src/js",
+      "files": "./src/js/**/*.js"
+    }
+  },
+  "assets":{
+    "images":{
+      "dir": "./assets/images",
+      "files": "./assets/images/**/*"
+    },
+    "javascripts":{
+      "dir": "./assets/js",
+      "files": "./assets/js/**/*.js"
+    }
+  }
+}

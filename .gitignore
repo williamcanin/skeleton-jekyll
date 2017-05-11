@@ -1,0 +1,7 @@
+_site
+node_modules
+.sass-cache
+_vendor
+.jekyll-metadata
+Gemfile.lock
+deploy/deploy

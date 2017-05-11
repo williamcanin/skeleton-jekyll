@@ -1,0 +1,17 @@
+<!-- Search script
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- Include Liquid _data/data
+___________________________________________ -->
+{% include liquid/data %}
+
+<script async type="text/javascript">
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('searchResult'),
+    json: '{{ "/assets/json/search.json" | prepend: site.baseurl | prepend: site.url }}',
+    noResultsText:'{{ loadData.website.search.input.notfound }}',
+    limit:10,
+    fuzzy:!1
+  });
+</script>

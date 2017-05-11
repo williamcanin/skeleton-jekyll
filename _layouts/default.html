@@ -1,0 +1,47 @@
+---
+layout: compress
+---
+
+<!-- Include Liquid _data/data
+___________________________________________ -->
+{% include liquid/data %}
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+  <!-- Head
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/head.html %}
+
+  <body>
+
+  <!-- Nav
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include nav/nav.html %}
+
+    <main class="main" id="top">
+
+      <div class="container wrapper">
+        <div class="content-main">
+          {{ content }}
+        </div>
+      </div>
+
+      <!-- Footer
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/footer.html %}
+
+    </main>
+
+
+    <!-- Javascripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include scripts/default.html %}
+
+  </body>
+
+</html>
