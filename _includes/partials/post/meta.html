@@ -1,0 +1,24 @@
+<section class="meta-post">
+
+  <time class="datetime" datetime="{{ page.date | date:'%Y-%m-%d' }}">
+    <span class="text">{% datelang page %}{% include datelang/page %}</span>
+  </time>
+
+  {% if page.comments and loadData.userdata.disqus.username %}
+    <div class="count-comments">
+      <a href="#comments" data-disqus-identifier="{{ page.url }}">0</a>
+    </div>
+  {% endif %}
+
+  <div class="tag">
+    Tags:
+    {% for tag in page.tags %}
+      <a href="{{ '/blog/tags/' | prepend: site.baseurl | prepend: site.url }}/{{ tag }}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+
+  <div class="reading_time">
+    {{ page.content | reading_time }}
+  </div>
+
+</section>

@@ -1,0 +1,13 @@
+<nav class="nav">
+
+  {% for page in site.pages %}
+    {% if page.title and page.menu == true %}
+      <li>
+        <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  {% include partials/search.html %}
+
+</nav>

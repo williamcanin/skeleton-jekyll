@@ -33,7 +33,7 @@ website:
     author:
       image:
       title: Author
-      name: Typing Theme
+      name: Skeleton Jekyll
       bio: |
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora non aut eos voluptas debitis unde impedit aliquid ipsa.
     share:
@@ -46,6 +46,10 @@ website:
         title: "Share on LinkedIn"
       gplus:
         title: "Share on Google Plus"
+    comments:
+      title: Leave your comment
+      disable:
+        message: Comment disabled
 
 # Category: User Data.
 userdata:

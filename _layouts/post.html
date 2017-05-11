@@ -1,79 +1,60 @@
 ---
-layout: default
+layout: compress
 ---
 
 <!-- Include Liquid _data/data
 ___________________________________________ -->
 {% include liquid/data %}
 
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <!-- Include search input
-  ________________________________________________ -->
-  {% include partials/search.html %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- Head
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/head.html %}
+
+  <body>
+
+  <!-- Nav with search
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/nav/search.html %}
 
 
-  <div class="title">
-    <h1>{{ page.title }}</h1>
-  </div>
+    <!-- Header post (banner)
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include partials/post/header.html %}
 
-  <div class="row meta" datetime="{{ page.date | date:'%Y-%m-%d' }}">
+    <section class="post" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-    <time class="datetime">
-      <span class="text">{% datelang page %}{% include datelang/page %}</span>
-    </time>
+      <!-- Meta (Date,Counter comments,Tags,Readingtime)
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/post/meta.html %}
 
-    {% if page.comments and loadData.userdata.disqus.username %}
-    <div class="count-comments">
-      <a href="#comments" data-disqus-identifier="{{ page.url }}">0</a>
-    </div>
-    {% endif %}
+      <article role="article" id="post" class="post-content" itemprop="articleBody">
+        {{ content }}
+      </article>
 
-  </div>
+      <!-- Share in socials
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/post/share.html %}
+      <!-- Author posting
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/post/author.html %}
+      <!-- Disqus comments
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/post/disqus.html %}
+      <!-- Footer
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/footer.html %}
 
-  <div class="tag-list">
-    Tags:
-    {% for tag in page.tags %}
-      <a href="{{ '/blog/tags/' | prepend: site.baseurl | prepend: site.url }}/{{ tag }}">{{ tag }}</a>
-    {% endfor %}
-  </div>
+    </section>
 
-  <div class="reading_time">
-    {{ page.content | reading_time }}
-  </div>
 
-  <div class="content">
-    {{ content }}
-    {% include partials/share.html %}
+    <!-- Javascripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include scripts/default.html %}
 
-    <div class="author">
-      {% if loadData.website.post.author.image %}
-      <div class="image">
-        <img class="" src="{{ '/assets/images/author' | prepend: site.baseurl | prepend: site.url }}/{{ loadData.website.post.author.image }}" alt="">
-      </div>
-      {% endif %}
-      <div class="bio">
-        <p class="title">{{ loadData.website.post.author.title }}</p>
-        <p class="name">{{ loadData.website.post.author.name }}</p>
-        <p class="content">{{ loadData.website.post.author.bio }}</p>
-      </div>
-    </div>
+  </body>
 
-    <div class="disqus" id="comments">
-    {% if page.comments and loadData.userdata.disqus.username %}
-      <div class="title">
-        <h3>&nbsp;{{ loadData.website.strings.comments.title }}</h3>
-      </div>
-      <div class="content">
-        {% include scripts/disqus_comments.html %}
-      </div>
-    {% else %}
-      <div class="title">
-        <h3>&nbsp;{{ loadData.website.strings.comments.disable }}</h3>
-      </div>
-    {% endif %}
-    </div>
-
-  </div>
-
-</article>
+</html>

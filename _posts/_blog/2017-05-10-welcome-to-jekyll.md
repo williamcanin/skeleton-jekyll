@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Welcome to Jekyll!"
+subtitle: "Post example Skeleton Jekyll"
 date:   2017-05-10 05:16:01 -0300 
 categories: blog
 tags: ['example','welcome','jekyll']
@@ -9,7 +10,10 @@ comments: true
 excerpted: |
     You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site ...
 # Does not change and does not remove 'script_js' variables
-script_js: [post.min.js, jekyll-search.min.js]
+script_js: [jekyll-search.min.js, post.min.js]
+
+# Events Google Analytics
+ga_event: false
 
 # Does not change and does not remove 'script_html' variables
 script_html: [search.html]
