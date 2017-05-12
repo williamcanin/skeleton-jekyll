@@ -1,7 +1,7 @@
 ---
-layout: null
-title: Home
-date: 2017-05-11 20:34:12
+layout: page
+title: Resume
+date: 2017-05-11 21:41:35
 
 # Enable / Disable this page in the main menu.
 menu: true
@@ -17,5 +17,9 @@ script_js:
 # Add the name and extension of the HTML you want for this page. Then add the script to the "_includes/scripts" folder
 script_html:
 
-permalink: /
+permalink: /resume/
 ---
+
+
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus dignissimos sed voluptate non ipsam distinctio qui quos magni corporis adipisci, quis soluta eos itaque ut deserunt est, molestiae, harum incidunt.

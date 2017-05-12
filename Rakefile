@@ -7,32 +7,44 @@
 
 require './lib/rb/config.rb'
 
-
 # Task create header Post
-# Example1: rake post:blog TITLE="First post"
+# Example: bundle exec rake post:blog TITLE="First post"
 # Note: TITLE is Required
 desc "Create new post"
 namespace :post do
   task :blog do
-    confs = Main.new
-    confs.post_create('postsDirBlog')
+    main = Main.new
+    main.post_create('postsDirBlog')
   end
 end
 
+# Task create header Page
+# Example: bundle exec rake page:create TITLE="About" LAYOUT="page"
+# Note: TITLE and LAYOUT is Required
+desc "Create new page"
+namespace :page do
+  task :create do
+    main = Main.new
+    main.page_create('pagesDir')
+  end
+end
 
+# Task to turn the presentation page on and off.
+# Example1: bundle exec rake hello:true
+# Example2: bundle exec rake hello:false
 desc "Disable/Enable presentation page"
-namespace :prepage do
+namespace :hello do
   task :true do
-    confs = Main.new
-    confs.presentation_page(true)
+    main = Main.new
+    main.hello_page(true)
   end
   task :false do
-    confs = Main.new
-    confs.presentation_page(false)
+    main = Main.new
+    main.hello_page(false)
   end
 end
 
-# Default configuration
+# Util configuration
 def ask(message, valid_options)
   if valid_options
     answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)

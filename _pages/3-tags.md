@@ -1,7 +1,7 @@
 ---
 layout: null
 title: Tags
-id: taglink
+date: 2017-05-11 21:09:24
 
 # Enable / Disable this page in the main menu.
 menu: true
@@ -10,9 +10,11 @@ menu: true
 published: true
 
 # Does not change and does not remove 'script_js' variables
+# Add the JS name and extension you want for this page. Then add the script to the "src/js" folder
 script_js: [postlist.min.js, jekyll-search.min.js]
 
-# Does not change and does not remove 'include' variables
+# Does not change and does not remove 'script_html' variables
+# Add the name and extension of the HTML you want for this page. Then add the script to the "_includes/scripts" folder
 script_html: [search.html]
 
 permalink: /blog/tags/

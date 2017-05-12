@@ -1,8 +1,7 @@
-[] comentar bastante no html
-[] onepage habilitar / desabilitar
+[] comentar bastante nos scripts
+[x] onepage habilitar / desabilitar
 [x] gulpfile para minificar javascripts
 [] tags
 [] categorias
-[] google page view
 [x] indice plugins
 [x] simple Search Jekyll adicionar
