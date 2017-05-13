@@ -4,6 +4,17 @@
 
 # Category: Website.
 website:
+
+  # Maintenance website
+  maintenance:
+    enable: false
+    title: |
+      <p>Excuse me :( </p>
+      My site is under maintenance.
+    subtitle: |
+      Will not have forecast back. Meanwhile, follow me on the social networks below.
+
+
   title: Skeleton Jekyll
   description: Skeleton Jekyll - A skeleton for Jekyll
   launch: 2017
@@ -66,3 +77,22 @@ userdata:
   twitter:
   disqus:
     username:
+ # You can add at most 4 social.
+  socials:
+    title: Follow Me
+    ga_event: true # Google Analytics Event (Hit). Usage: true | false
+    links:
+      - title: GitHub
+        id: github
+        icon: fa-github
+        url: https://github.com
+
+      - title: Google Plus
+        id: google-plus
+        icon: fa-google-plus
+        url: https://plus.google.com
+
+      - title: LinkedIn
+        id: linkedin
+        icon: fa-linkedin
+        url: https://linkedin.com

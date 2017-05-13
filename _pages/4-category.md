@@ -1,7 +1,7 @@
 ---
 layout: tag
-title: Tags
-date: 2017-05-11 21:09:24
+title: Categories
+date: 2017-05-11 21:10:42
 
 # Enable / Disable this page in the main menu.
 menu: true
@@ -17,6 +17,6 @@ script_js: [jekyll-search.min.js]
 # Add the name and extension of the HTML you want for this page. Then add the script to the "_includes/scripts" folder
 script_html: [search.html]
 
-permalink: /blog/tags/
+permalink: /blog/categories/
 ---
 

@@ -4,6 +4,7 @@ title:  "Welcome to Jekyll!"
 subtitle: "Post example Skeleton Jekyll"
 date:   2017-05-10 05:16:01 -0300 
 categories: blog
+# Add tags to make search easier
 tags: ['example','welcome','jekyll']
 published: true
 comments: true 

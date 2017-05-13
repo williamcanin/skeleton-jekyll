@@ -1,6 +1,7 @@
 [] comentar bastante nos scripts
 [x] onepage habilitar / desabilitar
 [x] gulpfile para minificar javascripts
+[] adiciona maintenance
 [] tags
 [] categorias
 [x] indice plugins

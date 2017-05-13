@@ -7,9 +7,7 @@ ___________________________________________ -->
 {% include liquid/data %}
 
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+{% if loadData.website.maintenance.enable == false %}
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
@@ -44,3 +42,6 @@ ___________________________________________ -->
   </body>
 
 </html>
+{% else %}
+  {% include partials/maintenance/index.html %}
+{% endif %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include partials/head.html %}
+</head>
+<body>
+  <h1>{{ loadData.website.maintenance.title }}</h1>
+  <h4>{{ loadData.website.maintenance.subtitle }}</h4>
+
+    {% for hash in loadData %}
+      {% assign userdata = hash[1] %}
+      <p>{{ userdata.socials.title }}</p>
+      {% assign links = userdata.socials.links %}
+      {% for item in links %}
+        <ul>
+          <li id="{{ item.id }}">
+            <a href="{{ item.url }}" title="{{ item.title }}" target="_blank"  {% if userdata.socials.ga_event == true and loadData.website.google.analytics.events == true %} onclick="ga('send', 'event', 'linkTo', '{{ item.title }}', 'Social Network', {useBeacon: true});" {% endif %}>{{ item.title }}</a>
+          </li>
+        </ul>
+      {% endfor %}
+    {% endfor %}
+</body>
+</html>
