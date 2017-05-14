@@ -7,12 +7,13 @@
 # Install:      Put into your _plugins dir in your Jekyll site
 # Usage:        Add the following to the '_config.yml' file:
 
+#             plugin:
 #               hellopage:
 #                 enable: <value>
 #                 postlist-page: <page>
 #
 # value: [ true | false ]
-# page: Insert post-page with markdown extension
+# page: Insert post-page with markdown extension. e.g : 2-blog.md
 # --------------------------------------------------------------------
 
 module Jekyll
