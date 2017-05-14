@@ -5,3 +5,4 @@ _vendor
 .jekyll-metadata
 Gemfile.lock
 deploy/deploy
+_plugins/.idea

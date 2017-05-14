@@ -18,9 +18,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 
-hellopage: true
-
-
 # Settings for the plugins in the _plugins folder.
 plugin:
   imager:
@@ -32,6 +29,10 @@ plugin:
   datelang:
     locale: en_US
     reload: false
+  # Value for the 'hellopage_setting' plugin
+  hellopage:
+    enable: false
+    postlist-page: 2-blog.md
 
 
 # Settings to share the post on the social networks below.

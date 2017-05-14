@@ -15,6 +15,7 @@ module Jekyll
     class Main < Liquid::Tag
       # Defining syntax
       Syntax = /^\s*([^\s]+)(?:\s+(\d+)\s+(\d+)\s*)?/
+
       # Method for picking up the _config.yml
       def _get_config_yml
         # Capture the settings of the _config.yml file
