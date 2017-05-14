@@ -5,7 +5,7 @@
 # Page author: http://williamcanin.com
 # Description: Task creation file for the 'config.rb' file.
 
-require './lib/rb/config.rb'
+require './lib/rb/commands.rb'
 
 # Task create header Post
 # Example: bundle exec rake post:blog TITLE="First post"
@@ -29,20 +29,20 @@ namespace :page do
   end
 end
 
-# Task to turn the presentation page on and off.
+# Task to turn the presentation page on and off. [DEPRECATED]
 # Example1: bundle exec rake hello:true
 # Example2: bundle exec rake hello:false
-desc "Disable/Enable presentation page"
-namespace :hello do
-  task :true do
-    main = Main.new
-    main.hello_page(true)
-  end
-  task :false do
-    main = Main.new
-    main.hello_page(false)
-  end
-end
+# desc "Disable/Enable presentation page"
+# namespace :hello do
+#   task :true do
+#     main = Main.new
+#     main.hello_page(true)
+#   end
+#   task :false do
+#     main = Main.new
+#     main.hello_page(false)
+#   end
+# end
 
 # Util configuration
 def ask(message, valid_options)

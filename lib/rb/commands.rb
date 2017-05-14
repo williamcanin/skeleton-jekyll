@@ -62,6 +62,7 @@ Example: rake post:blog TITLE=\"My post\"")
           file.puts("tags: ['tag1','tag2','tag3']")
           file.puts("published: false")
           file.puts("comments: false")
+          file.puts("share: false")
           file.puts("excerpted: |
   \"Put here your excerpt\"")
           file.puts("# Does not change and does not remove 'script_js' variable.")
@@ -146,65 +147,65 @@ Note: If you do not use layout, leave 'null'")
       end
   end # End 'page_create'
 
-  # Function for creating folders
-  def create_folders (options = [])
-    FileUtils::mkdir_p options
-  end
+  # Function for creating folders [DEPRECATED]
+  # def create_folders (options = [])
+  #   FileUtils::mkdir_p options
+  # end
 
-  # Function for remove folders
-  def remove_folders (options = [])
-    FileUtils::rm_rf options
-  end
+  # Function for remove folders [DEPRECATED]
+  # def remove_folders (options = [])
+  #   FileUtils::rm_rf options
+  # end
 
-  # Function to create page redirect html file.
-  def create_redirect_page(filename)
-    File.open(filename, 'w') do |file|
-      file.puts "<!DOCTYPE html>"
-      file.puts "<html>"
-      file.puts "<head>"
-      file.puts "  <meta http-equiv=\"refresh\" content=\"0; url=/\">"
-      file.puts "  <title>Redirect</title>"
-      file.puts "</head>"
-      file.puts "</html>"
-    end
-  end
+  # Function to create page redirect html file. [DEPRECATED]
+  # def create_redirect_page(filename)
+  #   File.open(filename, 'w') do |file|
+  #     file.puts "<!DOCTYPE html>"
+  #     file.puts "<html>"
+  #     file.puts "<head>"
+  #     file.puts "  <meta http-equiv=\"refresh\" content=\"0; url=/\">"
+  #     file.puts "  <title>Redirect</title>"
+  #     file.puts "</head>"
+  #     file.puts "</html>"
+  #   end
+  # end
 
-  # Function to apply option (true | false) of the presentation page.
-  def hello_page(value)
+  # Function to apply option (true | false) of the presentation page. [DEPRECATED]
+  # def hello_page(value)
 
-    page_blog_file = "2-blog.#{CONFIG['markdown_ext']}"
-    indexmd_file = "index.#{CONFIG['markdown_ext']}"
+  #   page_blog_file = "2-blog.#{CONFIG['markdown_ext']}"
+  #   indexmd_file = "index.#{CONFIG['markdown_ext']}"
 
-    if value == true
+  #   if value == true
 
-      remove_folders(["blog/"])
+  #     remove_folders(["blog/"])
 
-      blog_page = File.read("_pages/#{page_blog_file}")
-      blog_page.gsub!("published: false", "published: #{value}")
-      blog_page.gsub!("menu: false", "menu: #{value}")
-      File.write("_pages/#{page_blog_file}", blog_page)
+  #     blog_page = File.read("_pages/#{page_blog_file}")
+  #     blog_page.gsub!("published: false", "published: #{value}")
+  #     blog_page.gsub!("menu: false", "menu: #{value}")
+  #     File.write("_pages/#{page_blog_file}", blog_page)
 
-      indexmd = File.read("#{indexmd_file}")
-      indexmd.gsub!("layout: postlist", "layout: home")
-      File.write("#{indexmd_file}", indexmd)
+  #     indexmd = File.read("#{indexmd_file}")
+  #     indexmd.gsub!("layout: postlist", "layout: home")
+  #     File.write("#{indexmd_file}", indexmd)
 
-    elsif value == false
+  #   elsif value == false
 
-      create_folders(["blog/"])
-      create_redirect_page("blog/index.html")
+  #     create_folders(["blog/"])
+  #     create_redirect_page("blog/index.html")
 
-      blog_page = File.read("_pages/#{page_blog_file}")
-      blog_page.gsub!("published: true", "published: #{value}")
-      blog_page.gsub!("menu: true", "menu: #{value}")
-      File.write("_pages/#{page_blog_file}", blog_page)
+  #     blog_page = File.read("_pages/#{page_blog_file}")
+  #     blog_page.gsub!("published: true", "published: #{value}")
+  #     blog_page.gsub!("menu: true", "menu: #{value}")
+  #     File.write("_pages/#{page_blog_file}", blog_page)
 
-      indexmd = File.read("#{indexmd_file}")
-      indexmd.gsub!("layout: home", "layout: postlist")
-      File.write("#{indexmd_file}", indexmd)
+  #     indexmd = File.read("#{indexmd_file}")
+  #     indexmd.gsub!("layout: home", "layout: postlist")
+  #     File.write("#{indexmd_file}", indexmd)
 
-    else
-      p "[Error] Usage: true | false "
-    end
-  end
+  #   else
+  #     p "[Error] Usage: true | false "
+  #   end
+  # end
 
 end

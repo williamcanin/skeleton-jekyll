@@ -12,10 +12,10 @@ require 'fileutils'
 
 module Jekyll
   module Imager
+
     class Main < Liquid::Tag
       # Defining syntax
       Syntax = /^\s*([^\s]+)(?:\s+(\d+)\s+(\d+)\s*)?/
-
       # Method for picking up the _config.yml
       def _get_config_yml
         # Capture the settings of the _config.yml file
@@ -24,7 +24,7 @@ module Jekyll
         @url_website = config_yml['baseurl']
         @get_dir_img_posts = config_yml['plugin']['imager']['dir_posts']
       end
-      def initialize(tag_name, input, tokens)
+      def initialize(tag_name, input, site)
         super
         if input =~ Syntax then
           @input = input

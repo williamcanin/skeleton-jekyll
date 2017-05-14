@@ -24,7 +24,7 @@ ________________________________________________________________________________
 ______________________________________________________________________________________ */
 
     // var path = require('./sources/json/paths.json');
-    var configs = require('./lib/json/config.json');
+    var configs = require('./lib/json/gulp.json');
 
 
 /* COMPRESS JAVASCRIPTS

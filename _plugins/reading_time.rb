@@ -16,7 +16,7 @@ module Jekyll
     def reading_time(input)
 
       # Loading config string languages
-      config = File.read(File.join(File.dirname(File.expand_path(__FILE__)), "./.readingtimerc"))
+      config = File.read(File.join(File.dirname(File.expand_path(__FILE__)), "../lib/json/lang.json"))
       # Capture hash
       data_hash_json = JSON.parse(config)
       # Loading and Capture config file _config.yml

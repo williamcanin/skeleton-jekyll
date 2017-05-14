@@ -8,6 +8,5 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 gem "jekyll"
-gem "colorize"
 gem "rake"
 gem "pygments.rb"

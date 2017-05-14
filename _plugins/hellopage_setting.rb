@@ -46,10 +46,9 @@ module Jekyll
     class RedirectIndex < Page
 
       # Method for initializing redirect page values
-      def initialize(site, base, dir)
+      def initialize(site, base)
         @site = site
         @base = base
-        @dir = dir
         @name = 'blog.html'
         self.process(@name)
         self.read_yaml(File.join(base, '_layouts'), 'redirect.html')
@@ -76,7 +75,7 @@ module Jekyll
           md.change_index(site.source,"postlist","hellopage")
           md.change_pplist(site.source,site.include[0],"false","true","#{hellopage_get['postlist-page']}")
         elsif hellopage_get['enable'] == false
-          index = RedirectIndex.new(site, site.source, '/')
+          index = RedirectIndex.new(site, site.source)
           index.render(site.layouts, site.site_payload)
           index.write(site.dest)
           site.pages << index

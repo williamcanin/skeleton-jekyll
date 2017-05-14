@@ -7,7 +7,8 @@ categories: blog
 # Add tags to make search easier
 tags: ['example','welcome','jekyll']
 published: true
-comments: true 
+comments: true
+share: false
 excerpted: |
     You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site ...
 # Does not change and does not remove 'script_js' variables

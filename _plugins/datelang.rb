@@ -50,7 +50,7 @@ module Jekyll
     class Main < Liquid::Tag
       Syntax = /^\s*([^\s]+)(\s+(\d+)\s+(\d+)\s*)?/
       def get_configs
-        @config_json = File.join(File.dirname(File.expand_path(__FILE__)), "./.datelangrc")
+        @config_json = File.join(File.dirname(File.expand_path(__FILE__)), "../lib/json/lang.json")
         if not File.exist?(@config_json)
           raise "Abort: File \"#{@config_json}\" not found. You must create along with its structure."
         end

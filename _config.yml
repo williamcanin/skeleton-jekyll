@@ -37,7 +37,6 @@ plugin:
 
 # Settings to share the post on the social networks below.
 share:
-  enable: true
   facebook: true
   linkedin: true
   twitter: true
