@@ -8,6 +8,7 @@
 
 require "fileutils"
 
+
 # Class to set global variables
 class Variables
 
