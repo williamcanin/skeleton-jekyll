@@ -10,10 +10,8 @@
 #             plugin:
 #               hellopage:
 #                 enable: <value>
-#                 postlist-page: <page>
 #
 # value: [ true | false ]
-# page: Insert post-page with markdown extension. e.g : 2-blog.md
 # --------------------------------------------------------------------
 
 module Jekyll
@@ -51,6 +49,14 @@ module Jekyll
         @site = site
         @base = base
         @name = 'blog.html'
+
+        # Verify file 'abourt.md' exist
+        if not File.exist?(File.join(base, '_pages/about.md'))
+          p "[ERROR] 'hellopage.rb' - I need the special 'about.md' page of the project. Without this page I can not process."
+          exit
+        end
+
+        # Start process for create page redirect
         self.process(@name)
         self.read_yaml(File.join(base, '_layouts'), 'redirect.html')
       end
@@ -72,20 +78,26 @@ module Jekyll
 
         # Comparisons for checking the status of the 'hello page' variable in the '_config.yml' file
         if hellopage_get['enable'] == true
+
           md = MarkdownChange.new
           md.change_index(site.source,"postlist_home","hellopage")
-          md.change_page_values(site.source,site.include[0],"true","false","#{hellopage_get['page-filename']}")
+          md.change_page_values(site.source,site.include[0],"true","false","about.md")
+
         elsif hellopage_get['enable'] == false
+
           index = RedirectIndex.new(site, site.source)
           index.render(site.layouts, site.site_payload)
           index.write(site.dest)
           site.pages << index
           md = MarkdownChange.new
           md.change_index(site.source,"hellopage","postlist_home")
-          md.change_page_values(site.source,site.include[0],"false","true","#{hellopage_get['page-filename']}")
+          md.change_page_values(site.source,site.include[0],"false","true","about.md")
+
         else
-          puts "[ERROR] Variable 'hellopage' invalid in '_config.yml'"
+
+          puts "[ERROR] 'hellopage.rb' - Variable 'hellopage' invalid in '_config.yml'"
           abort
+
         end
 
       end # end method generator

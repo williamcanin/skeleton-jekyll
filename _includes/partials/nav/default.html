@@ -4,8 +4,6 @@
     <li>
       <a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
     </li>
-  </ul>
-  <ul>
     {% for page in site.pages %}
       {% if page.title and page.menu == true %}
         <li>

@@ -1,10 +1,15 @@
 <nav class="nav">
 
 <a href="/">Home</a>
+
 <ul>
-  <li><a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a></li>
-</ul>
-  <ul>
+  <li>
+    {% if site.plugin.hellopage.enable == false %}
+      <a href="{{ '/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
+    {% else %}
+      <a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
+    {% endif %}
+  </li>
     {% if site.plugin.hellopage.enable == false %}
       {% for page in site.pages %}
         {% if page.title and page.menu == true %}

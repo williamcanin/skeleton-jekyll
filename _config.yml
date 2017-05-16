@@ -32,8 +32,6 @@ plugin:
   # Value for the 'hellopage_setting' plugin
   hellopage:
     enable: true
-    page-filename: about.md
-
 
 # Settings to share the post on the social networks below.
 share:

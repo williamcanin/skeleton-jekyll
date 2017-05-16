@@ -4,10 +4,10 @@ title: About
 date: 2017-05-11 21:18:02
 
 # Enable / Disable this page in the main menu.
-menu: false
+menu: true
 
 # Publishing or not on the server
-published: false
+published: true
 
 # Does not change and does not remove 'script_js' variables
 # Add the JS name and extension you want for this page. Then add the script to the "src/js" folder
