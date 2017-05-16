@@ -2,13 +2,10 @@
 layout: null
 ---
 
-<!-- Include Liquid _data/data
-___________________________________________ -->
-{% include liquid/data %}
-
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    {% include liquid/data %}
     <title>{{ loadData.website.title | xml_escape }}</title>
     <description>{{ loadData.website.description | xml_escape }}</description>
     <link>{{ site.url }}{{ site.baseurl }}/</link>
@@ -19,7 +16,7 @@ ___________________________________________ -->
     {% for post in site.categories.blog limit:30 %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape | strip_html | truncatewords:100 }}</description>
+        <description>{{ post.content | xml_escape | strip_html | truncatewords:300 }}</description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>

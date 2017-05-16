@@ -1,11 +1,17 @@
 <nav class="nav">
-
-  {% for page in site.pages %}
-    {% if page.title and page.menu == true %}
-      <li id="{{ page.id }}">
-        <a href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a>
-      </li>
-    {% endif %}
-  {% endfor %}
-
+<a href="/">Home</a>
+  <ul>
+    <li>
+      <a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
+    </li>
+  </ul>
+  <ul>
+    {% for page in site.pages %}
+      {% if page.title and page.menu == true %}
+        <li>
+          <a href="{{ site.url }}{{ page.baseurl }}{{ page.url }}">{{ page.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </nav>

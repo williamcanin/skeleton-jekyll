@@ -11,13 +11,13 @@
    <script type="text/javascript" src="{{ '/assets/js/' | prepend: site.baseurl | prepend: site.url  | append: script_js }}"></script>
 {% endfor %}
 <!-- If the Hello Page is false, add 'script js' of search on the home page -->
-{% if site.plugin.hellopage.enable == false and page.url == '/' %}
-  {% for post in site.categories.blog %}
-    {% for script_js in post.script_js %}
-      <script type="text/javascript" src="{{ '/assets/js/' | prepend: site.baseurl | prepend: site.url  | append: script_js }}"></script>
-    {% endfor %}
-  {% endfor %}
-{% endif %}
+<!-- {.% if site.plugin.hellopage.enable == false and page.url == '/' %.} -->
+<!--   {.% for post in site.categories.blog %.}
+    {.% for script_js in post.script_js %.}
+      <script type="text/javascript" src="{.{ '/assets/js/' | prepend: site.baseurl | prepend: site.url  | append: script_js }.}"></script>
+    {.% endfor %.}
+  {.% endfor %.} -->
+<!-- {.% endif %.} -->
 
 <!-- Script HTML specific for each pages
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -25,13 +25,13 @@
    {% include scripts/{{script_html}} %}
 {% endfor %}
 <!-- If the Hello Page is false, add 'script html' of search on the home page -->
-{% if site.plugin.hellopage.enable == false and page.url == '/' %}
-  {% for post in site.categories.blog %}
-    {% for script_html in post.script_html %}
-      {% include scripts/{{script_html}} %}
-    {% endfor %}
-  {% endfor %}
-{% endif %}
+<!-- {.% if site.plugin.hellopage.enable == false and page.url == '/' %.} -->
+<!--   {.% for post in site.categories.blog %.}
+    {.% for script_html in post.script_html %.}
+      {.% include scripts/{{script_html}} %.}
+    {.% endfor %.}
+  {.% endfor %.} -->
+<!-- {.% endif %.} -->
 
 <!-- Add 'ga' function from Google Analytics to certain links in Posts.
      Event tracking in Google Analytics

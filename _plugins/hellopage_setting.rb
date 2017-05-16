@@ -32,11 +32,11 @@ module Jekyll
       end
 
       # Postlist page file change method
-      def change_pplist(dir_source,folder_pages,value_current,value_new,pplist_filename)
-        pplist = File.read(File.join(dir_source, folder_pages, "/#{pplist_filename}"))
-        pplist.gsub!("published: #{value_current}", "published: #{value_new}")
-        pplist.gsub!("menu: #{value_current}", "menu: #{value_new}")
-        File.write(File.join(dir_source, folder_pages, "/#{pplist_filename}"), pplist)
+      def change_page_values(dir_source,folder_pages,value_current,value_new,page_filename)
+        page_get = File.read(File.join(dir_source, folder_pages, "/#{page_filename}"))
+        page_get.gsub!("published: #{value_current}", "published: #{value_new}")
+        page_get.gsub!("menu: #{value_current}", "menu: #{value_new}")
+        File.write(File.join(dir_source, folder_pages, "/#{page_filename}"), page_get)
       end
 
     end
@@ -73,16 +73,16 @@ module Jekyll
         # Comparisons for checking the status of the 'hello page' variable in the '_config.yml' file
         if hellopage_get['enable'] == true
           md = MarkdownChange.new
-          md.change_index(site.source,"postlist","hellopage")
-          md.change_pplist(site.source,site.include[0],"false","true","#{hellopage_get['postlist-page']}")
+          md.change_index(site.source,"postlist_home","hellopage")
+          md.change_page_values(site.source,site.include[0],"true","false","#{hellopage_get['page-filename']}")
         elsif hellopage_get['enable'] == false
           index = RedirectIndex.new(site, site.source)
           index.render(site.layouts, site.site_payload)
           index.write(site.dest)
           site.pages << index
           md = MarkdownChange.new
-          md.change_index(site.source,"hellopage","postlist")
-          md.change_pplist(site.source,site.include[0],"true","false","#{hellopage_get['postlist-page']}")
+          md.change_index(site.source,"hellopage","postlist_home")
+          md.change_page_values(site.source,site.include[0],"false","true","#{hellopage_get['page-filename']}")
         else
           puts "[ERROR] Variable 'hellopage' invalid in '_config.yml'"
           abort

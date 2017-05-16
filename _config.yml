@@ -28,11 +28,11 @@ plugin:
   # To see language support, go to the plugin "_plugins/datelang.rb"
   datelang:
     locale: en_US
-    reload: true
+    reload: false
   # Value for the 'hellopage_setting' plugin
   hellopage:
-    enable: false
-    postlist-page: 2-blog.md
+    enable: true
+    page-filename: about.md
 
 
 # Settings to share the post on the social networks below.
@@ -74,6 +74,9 @@ compress_html:
 exclude:
   - node_modules
   - lib
+  - dev
+  - deploy
+  - src
   - Gemfile
   - Gemfile.lock
   - CHANGELOG

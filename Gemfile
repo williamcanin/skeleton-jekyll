@@ -10,3 +10,7 @@ ruby RUBY_VERSION
 gem "jekyll"
 gem "rake"
 gem "pygments.rb"
+# group "jekyll_plugins" do
+#   gem "jekyll-archives"
+# end
+

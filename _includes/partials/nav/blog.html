@@ -1,0 +1,24 @@
+<nav class="nav">
+
+<a href="/">Home</a>
+<ul>
+  <li><a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a></li>
+</ul>
+  <ul>
+    {% if site.plugin.hellopage.enable == false %}
+      {% for page in site.pages %}
+        {% if page.title and page.menu == true %}
+          <li>
+            <a href="{{ site.url }}{{ page.baseurl }}{{ page.url }}">{{ page.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <li>
+      <a href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">Feed</a>
+    </li>
+  </ul>
+
+  {% include partials/search-box.html %}
+
+</nav>

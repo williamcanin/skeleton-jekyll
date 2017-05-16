@@ -1,15 +1,49 @@
 ---
-layout: default
+layout: compress
 ---
 
 <!-- Include Liquid _data/data
 ___________________________________________ -->
 {% include liquid/data %}
 
-<div class="home">
 
-  <div class="content">
-    <h1>Hello!</h1>
-  </div>
+{% if loadData.website.maintenance.enable == false %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
-</div>
+  <!-- Head
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/head.html %}
+
+  <body>
+
+  <!-- Nav
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/nav/default.html %}
+
+    <div class="hellopage" itemprop="mainContentOfPage">
+
+      <div class="content">
+        <h1>Hello!</h1>
+        <h2 id="about-hellopage">About</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dignissimos neque deleniti rerum voluptatibus odio totam nostrum architecto eum perferendis alias molestias tempora sunt, accusantium ab quia beatae repellat consequatur?</p>
+        <h2>Services</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quam laudantium at repellat vel, voluptates soluta vero, consequuntur blanditiis assumenda, dolorum reiciendis obcaecati. Aperiam doloribus culpa ipsa, laboriosam similique. Optio.</p>
+      </div>
+
+      <!-- Footer
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/footer.html %}
+
+    </div>
+
+    <!-- Javascripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include scripts/default.html %}
+
+  </body>
+
+</html>
+{% else %}
+  {% include partials/maintenance/index.html %}
+{% endif %}
