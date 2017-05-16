@@ -80,7 +80,7 @@ module Jekyll
         if hellopage_get['enable'] == true
 
           md = MarkdownChange.new
-          md.change_index(site.source,"postlist_home","hellopage")
+          md.change_index(site.source,"postlist","hellopage")
           md.change_page_values(site.source,site.include[0],"true","false","about.md")
 
         elsif hellopage_get['enable'] == false
@@ -90,7 +90,7 @@ module Jekyll
           index.write(site.dest)
           site.pages << index
           md = MarkdownChange.new
-          md.change_index(site.source,"hellopage","postlist_home")
+          md.change_index(site.source,"hellopage","postlist")
           md.change_page_values(site.source,site.include[0],"false","true","about.md")
 
         else

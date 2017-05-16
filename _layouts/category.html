@@ -24,48 +24,11 @@ ___________________________________________ -->
 
     <!-- Header post (banner)
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    {% include partials/postlist/header.html %}
+    {% include partials/category/header.html %}
 
-<section class="postlist" itemscope="itemscope" itemtype="http://schema.org/Blog">
+<section class="category" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-
-  {% for category in site.categories %}
-
-      <div class="details">
-
-        {% capture category_name %}{{ category | first }}{% endcapture %}
-
-        <div id="#{{ category_name | slugize }}"></div>
-        <h3 class="category-head">Category: {{ category_name }}</h3>
-
-        {% for post in site.categories[category_name] %}
-
-          <time class="time" itemprop="datePublished" datetime="{{ post.date | date:'%Y-%m-%d' }}">
-            {% datelang post %}
-            {% include datelang/post %}
-          </time>
-
-          {% if post.comments and loadData.userdata.disqus.username %}
-            <div class="count-comments">
-              <span class="disqus-comment-count" data-disqus-identifier="{{ post.url }}">0</span>
-            </div>
-          {% endif %}
-
-          <h1><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h1>
-
-          {% if post.excerpted %}
-            <p class="excerpted">
-              {{ post.excerpted | strip_html | truncatewords:26 }}
-              <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" class="continue">{{ loadData.website.strings.postlist.continue }}</a>
-            </p>
-          {% endif %}
-
-        {% endfor %}
-
-      </div>
-
-    {% endfor %}
-
+  {{ content }}
       <!-- Footer
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       {% include partials/footer.html %}

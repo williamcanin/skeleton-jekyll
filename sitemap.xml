@@ -14,7 +14,7 @@ layout: null
        </url>
     {% endif %}
   {% endfor %}
-  {% for post in site.categories.blog %}
+  {% for post in site.posts %}
     <url>
       <loc>{{ site.url }}{{ post.url }}</loc>
       {% if post.lastmod == null %}

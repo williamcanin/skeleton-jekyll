@@ -49,6 +49,11 @@ website:
       art:
         title: Blog
         subtitle: Welcome to blog.
+  category:
+    header:
+      text:
+        title: Category
+        subtitle: Here are posts referring to categories.
   post:
     author:
       image:

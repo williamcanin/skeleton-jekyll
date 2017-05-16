@@ -28,7 +28,7 @@ ___________________________________________ -->
 
  <section class="postlist" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-      {% for post in site.categories.blog %}
+      {% for post in site.posts %}
 
         <div class="details">
 

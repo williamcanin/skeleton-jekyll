@@ -2,7 +2,7 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 <!-- Counter posts -->
-{% for post in site.categories.blog %}
+{% for post in site.posts %}
   {% capture post_count %} {{ post_count | plus: 1 }} {% endcapture %}
 {% endfor %}
 

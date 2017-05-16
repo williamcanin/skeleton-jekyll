@@ -1,0 +1,61 @@
+---
+layout: compress
+---
+
+<!-- Include Liquid _data/data
+___________________________________________ -->
+{% include liquid/data %}
+
+
+{% if loadData.website.maintenance.enable == false %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- Head
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/head.html %}
+
+  <body>
+
+  <!-- Nav with search
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/nav/blog.html %}
+
+
+    <div id="archives">
+    {% for category in site.categories %}
+      <div class="archive-group">
+        {% capture category_name %}{{ category | first }}{% endcapture %}
+        <div id="#{{ category_name | slugize }}"></div>
+        <p></p>
+
+        <h3 class="category-head">{{ category_name }}</h3>
+        <a name="{{ category_name | slugize }}"></a>
+        {% for post in site.categories[category_name] %}
+        <article class="archive-item">
+          <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
+        </article>
+            {% if post.excerpted %}
+              <p class="excerpted">
+                {{ post.excerpted | strip_html | truncatewords:26 }}
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" class="continue">{{ loadData.website.strings.postlist.continue }}</a>
+              </p>
+            {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+    </div>
+
+    <!-- Javascripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include scripts/default.html %}
+
+    <script type="text/javascript" src="{{ '/assets/js/jekyll-search.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+    {% include scripts/search.html %}
+
+  </body>
+
+</html>
+{% else %}
+  {% include partials/maintenance/index.html %}
+{% endif %}

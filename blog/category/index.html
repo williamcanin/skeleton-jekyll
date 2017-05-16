@@ -1,0 +1,12 @@
+---
+layout: category
+---
+
+{% assign categories = site.categories | sort %}
+<ul>
+{% for category in categories %}
+  <li>
+    <a class="category-link" href="/blog/category/{{ category | first | downcase }}">{{ category | first }}</a>
+  </li>
+{% endfor %}
+</ul>

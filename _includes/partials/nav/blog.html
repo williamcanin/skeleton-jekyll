@@ -10,6 +10,7 @@
       <a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
     {% endif %}
   </li>
+  <li><a href="{{ '/blog/category/' | prepend: site.baseurl | prepend: site.url }}">Category</a></li>
     {% if site.plugin.hellopage.enable == false %}
       {% for page in site.pages %}
         {% if page.title and page.menu == true %}

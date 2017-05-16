@@ -1,0 +1,63 @@
+---
+layout: compress
+---
+
+<!-- Include Liquid _data/data
+___________________________________________ -->
+{% include liquid/data %}
+
+
+{% if loadData.website.maintenance.enable == false %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+  <!-- Head
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/head.html %}
+
+  <body>
+
+  <!-- Nav
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% include partials/nav/blog.html %}
+
+   <div class="Content">
+      <div class="Container Archive">
+        <img class="Post-bg Post-bg--archive" data-src="{{ site.baseurl }}/public/img/home/polyID.svg" />
+
+        {% for post in page.posts %}
+          <div class="Post-content Post-content--archive">
+            <div class="Post-date">
+              {{ post.date | date_to_string }}
+            </div>
+
+            <h1 class="Post-title Post-title--archive">
+              <a href="{{ site.baseurl }}{{ post.url }}">
+                {{ post.title }}
+              </a>
+            </h1>
+          </div>
+
+          <hr />
+        {% endfor %}
+      </div>
+    </div>
+
+      <!-- Footer
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      {% include partials/footer.html %}
+
+    </main>
+
+    <!-- Javascripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include scripts/default.html %}
+
+  </body>
+
+</html>
+{% else %}
+  {% include partials/maintenance/index.html %}
+{% endif %}
+
+

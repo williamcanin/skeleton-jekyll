@@ -51,6 +51,14 @@ markdown: kramdown
 highlighter: pygments
 permalink: /blog/:title/
 
+# Archive
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/blog/category/:name/'
+
 # Keeping static files
 keep_files: [images]
 
