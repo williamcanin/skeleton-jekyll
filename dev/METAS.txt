@@ -2,6 +2,8 @@
 [x] hellopage habilitar / desabilitar
 [x] gulpfile para minificar javascripts
 [x] adiciona maintenance
+[x] adicionar disqus
+[] adicionado --incremental no gulpfile.js
 [] tags
 [] categorias
 [x] indice plugins

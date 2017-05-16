@@ -51,6 +51,9 @@ markdown: kramdown
 highlighter: pygments
 permalink: /blog/:title/
 
+# Keeping static files
+keep_files: [images]
+
 # Build local / Server
 destination: _site
 port: 4000

@@ -59,7 +59,7 @@ ________________________________________________________________________________
 ______________________________________________________________________________________ */
 
     gulp.task('jekyll-serve', function (done) {
-        return cp.spawn('bundle', ['exec','jekyll','serve'], {stdio: 'inherit'})
+        return cp.spawn('bundle', ['exec','jekyll','serve'/*,'--incremental'*/], {stdio: 'inherit'})
             .on('close', done);
     });
 
