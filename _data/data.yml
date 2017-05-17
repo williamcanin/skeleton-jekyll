@@ -57,7 +57,7 @@ website:
   tags:
     header:
       text:
-        title: Tags
+        title: Tags cloud
         subtitle: This is a cloud of posts tags.
   post:
     author:
