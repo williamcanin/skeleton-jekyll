@@ -90,7 +90,7 @@ compress_html:
 exclude:
   - node_modules
   - lib
-  - dev
+  - backup
   - deploy
   - src
   - Gemfile
