@@ -22,7 +22,7 @@ module HeaderPage
           file.puts("")
           file.puts("permalink: /#{slug}/")
           file.puts("---")
-          puts "Created successfully!"
+          puts "✔ Created successfully!".green
         end
   end
 end

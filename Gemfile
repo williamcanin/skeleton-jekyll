@@ -12,4 +12,5 @@ gem "rake"
 gem "pygments.rb"
 group "jekyll_plugins" do
   gem "jekyll-archives"
+  gem "colorize"
 end

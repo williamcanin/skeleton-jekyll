@@ -8,6 +8,7 @@
 
 require "fileutils"
 require "json"
+require "colorize"
 
 class Main
 
@@ -21,7 +22,34 @@ class Main
 
 
 
+  def enter_parameters(msg1, value1, value2, condition)
 
+    @value1 = value1
+    @value2 = value2
+
+    puts "---------------------------------------".black.on_green.blink
+    puts "[ Welcome to the creation of headers! ]".black.on_green.blink
+    puts "---------------------------------------\n".black.on_green.blink
+    puts "⚠ Press ctrl-C when you get bored\n".yellow
+    puts "[ #{msg1} ]".black.on_green.blink
+    STDOUT.puts "→ Add #{value1.upcase}:".cyan
+    printf "> "
+    @value1 = STDIN.gets.chomp
+    if @value1.nil? or @value1.empty?
+      puts "✖ You must enter the #{value1.upcase} name! Aborted :(".red
+      abort
+    end
+    if condition == true
+      STDOUT.puts "→ Add #{value2.upcase}:".cyan
+      printf "> "
+      @value2 = STDIN.gets.chomp
+      if @value2.nil?  or @value2.empty?
+        puts "✖ You must enter the #{value2.upcase} name! Aborted :(".red
+        abort
+      end
+    end
+
+  end
 
 
 
@@ -30,28 +58,14 @@ class Main
 
     abort("rake aborted: '#{CONFIG['dirPost']}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
 
-    # Variables for post/blog
-    title_post = ''
-    category = ''
-
     begin
-      puts "Press ctrl-C when you get bored"
 
-      STDOUT.puts "Add TITLE:"
-      title_post = STDIN.gets.chomp
+      enter_parameters("Post header creation", "title", "category", true)
 
-      if title_post.nil? or title_post.empty?
-        abort("You must enter the TITLE name! Aborted :(")
-      end
+      title = @value1
+      category = @value2
 
-      STDOUT.puts "Add CATEGORY:"
-      category = STDIN.gets.chomp
-
-      if category.nil?  or category.empty?
-        abort("You must enter the CATEGORY name! Aborted :(")
-      end
-
-      slug = title_post.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
@@ -66,14 +80,14 @@ class Main
         abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
       end
 
-      puts "Creating new post: #{filename}"
+      puts "⚠ Creating new file in: #{filename}".yellow
       if dirPost == 'postsDirBlog'
-        create_header_post(filename, title_post, date_hour, category)
+        create_header_post(filename, title, date_hour, category)
       end
 
     rescue Interrupt => e
       puts
-      puts "Operation aborted!"
+      puts "⚠ Operation aborted!".yellow
     end
 
   end # End 'post_create'
@@ -90,29 +104,14 @@ class Main
 
     abort("rake aborted: '#{CONFIG['dirPages']}' directory not found.") unless FileTest.directory?(CONFIG[dirPages])
 
-    # Variables for post/blog
-    title_page = ''
-    layout = ''
-
     begin
-      puts "Press ctrl-C when you get bored"
 
-      STDOUT.puts "Add TITLE:"
-      title_page = STDIN.gets.chomp
+      enter_parameters("Page header creation", "title", "layout", true)
 
-      if title_page.nil? or title_page.empty?
-        abort("You must enter the TITLE name! Aborted :(")
-      end
+      title = @value1
+      layout = @value2
 
-      STDOUT.puts "Add LAYOUT:"
-      layout = STDIN.gets.chomp
-
-      if layout.nil?  or layout.empty?
-        abort("You must enter the CATEGORY name! Aborted :(")
-      end
-
-
-      slug = title_page.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
@@ -134,9 +133,9 @@ class Main
         abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
       end
 
-      puts "Creating new page: #{filename}"
+      puts "⚠ Creating new file in: #{filename}".yellow
       if dirPages == 'pagesDir'
-        create_header_page(filename, layout, title_page, date_hour, slug)
+        create_header_page(filename, layout, title, date_hour, slug)
       end
 
     rescue Interrupt => e
@@ -158,20 +157,13 @@ class Main
 
     abort("rake aborted: '#{CONFIG['dirProjects']}' directory not found.") unless FileTest.directory?(CONFIG[dirProjects])
 
-    # Variables for post/blog
-    title_project = ''
-
     begin
-      puts "Press ctrl-C when you get bored"
 
-      STDOUT.puts "Add TITLE:"
-      title_project = STDIN.gets.chomp
+      enter_parameters("Project header creation", "title", nil, false)
 
-      if title_project.nil? or title_project.empty?
-        abort("You must enter the TITLE name! Aborted :(")
-      end
+      title = @value1
 
-      slug = title_project.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
@@ -186,9 +178,9 @@ class Main
         abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
       end
 
-      puts "Creating new post: #{filename}"
+      puts "⚠ Creating new file in: #{filename}".yellow
       if dirProjects == 'projectsDir'
-        create_header_pr(filename, title_project, date_hour)
+        create_header_pr(filename, title, date_hour)
       end
 
     rescue Interrupt => e

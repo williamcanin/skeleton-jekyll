@@ -1,9 +1,9 @@
 module HeaderPost
-  def create_header_post(filename, title_post, date_hour, category)
+  def create_header_post(filename, title, date_hour, category)
         open(filename, 'w') do |file|
           file.puts("---")
           file.puts("layout: post")
-          file.puts("title: #{title_post.gsub(/-/,' ')}")
+          file.puts("title: #{title.gsub(/-/,' ')}")
           file.puts("subtitle: ")
           file.puts("date: #{date_hour}")
           file.puts("category: #{category}")
@@ -22,7 +22,7 @@ module HeaderPost
           file.puts("# Does not change and does not remove 'script_html' variable.")
           file.puts("script_html: [search.html]")
           file.puts("---")
-          puts "Created successfully!"
+          puts "✔ Created successfully!".green
         end
   end
 end
