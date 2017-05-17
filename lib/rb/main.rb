@@ -9,32 +9,28 @@
 require "fileutils"
 require "json"
 
+class Main
 
-# Class to set global variables
-class Variables
+  # Include partials - Modules
+  include Version
+  include Variables
+  include HeaderProject
+  include HeaderPage
+  include HeaderPost
 
-  SOURCE = "."
-  CONFIG = {
-    'postsDirBlog' => File.join(SOURCE, "_posts/_blog"),
-    'pagesDir' => File.join(SOURCE, "_pages"),
-    'projectsDir' => File.join(SOURCE, "_projects"),
-    'markdown_ext' => "md"
-  }
 
-end # End 'Variables'
 
-class Main < Variables
+
+
+
+
 
   # How to create header posts
   def post_create(dirPost)
 
-    # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirPost']}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
 
-    # [DEPRECATED]
-    # title_post = ENV["TITLE"]
-    # category = ENV["CATEGORY"]
-
+    # Variables for post/blog
     title_post = ''
     category = ''
 
@@ -72,30 +68,7 @@ class Main < Variables
 
       puts "Creating new post: #{filename}"
       if dirPost == 'postsDirBlog'
-        open(filename, 'w') do |file|
-          file.puts("---")
-          file.puts("layout: post")
-          file.puts("title: #{title_post.gsub(/-/,' ')}")
-          file.puts("subtitle: ")
-          file.puts("date: #{date_hour}")
-          file.puts("category: #{category}")
-          file.puts("tags: ['tag1','tag2','tag3']")
-          file.puts("published: false")
-          file.puts("comments: false")
-          file.puts("share: false")
-          file.puts("excerpted: |
-  \"Put here your excerpt\"")
-          file.puts("# Does not change and does not remove 'script_js' variable.")
-          file.puts("script_js: [jekyll-search.min.js, post.js]")
-          file.puts("")
-          file.puts("# Events Google Analytics")
-          file.puts("ga_event: false")
-          file.puts("")
-          file.puts("# Does not change and does not remove 'script_html' variable.")
-          file.puts("script_html: [search.html]")
-          file.puts("---")
-          puts "Created successfully!"
-        end
+        create_header_post(filename, title_post, date_hour, category)
       end
 
     rescue Interrupt => e
@@ -112,17 +85,12 @@ class Main < Variables
 
 
 
-
   # How to create header page
   def page_create(dirPages)
 
-    # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirPages']}' directory not found.") unless FileTest.directory?(CONFIG[dirPages])
 
-    # [DEPRECATED]
-    # title_page = ENV["TITLE"]
-    # layout = ENV["LAYOUT"]
-
+    # Variables for post/blog
     title_page = ''
     layout = ''
 
@@ -168,30 +136,7 @@ class Main < Variables
 
       puts "Creating new page: #{filename}"
       if dirPages == 'pagesDir'
-        open(filename, 'w') do |file|
-          file.puts("---")
-          file.puts("layout: #{layout.downcase}")
-          file.puts("title: #{title_page}")
-          file.puts("date: #{date_hour}")
-          file.puts("")
-          file.puts("# Enable / Disable this page in the main menu.")
-          file.puts("menu: false")
-          file.puts("")
-          file.puts("# Publishing or not on the server")
-          file.puts("published: false")
-          file.puts("")
-          file.puts("# Does not change and does not remove 'script_js' variables")
-          file.puts("# Add the JS name and extension you want for this page. Then add the script to the \"src/js\" folder")
-          file.puts("script_js:")
-          file.puts("")
-          file.puts("# Does not change and does not remove 'script_html' variables")
-          file.puts("# Add the name and extension of the HTML you want for this page. Then add the script to the \"_includes/scripts\" folder")
-          file.puts("script_html:")
-          file.puts("")
-          file.puts("permalink: /#{slug}/")
-          file.puts("---")
-          puts "Created successfully!"
-        end
+        create_header_page(filename, layout, title_page, date_hour, slug)
       end
 
     rescue Interrupt => e
@@ -202,15 +147,18 @@ class Main < Variables
   end # End 'page_create'
 
 
+
+
+
+
+
+
   # How to create header projects
   def project_create(dirProjects)
 
-    # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirProjects']}' directory not found.") unless FileTest.directory?(CONFIG[dirProjects])
 
-    # [DEPRECATED]
-    # title_project = ENV["TITLE"]
-
+    # Variables for post/blog
     title_project = ''
 
     begin
@@ -240,18 +188,7 @@ class Main < Variables
 
       puts "Creating new post: #{filename}"
       if dirProjects == 'projectsDir'
-        open(filename, 'w') do |file|
-          file.puts("---")
-          file.puts("layout: projectslist")
-          file.puts("title: #{title_project.gsub(/-/,' ')}")
-          file.puts("date: #{date_hour}")
-          file.puts("published: false")
-          file.puts("")
-          file.puts("# Do not change the permalink setting")
-          file.puts("permalink: /projects/")
-          file.puts("---")
-          puts "Created successfully!"
-        end
+        create_header_pr(filename, title_project, date_hour)
       end
 
     rescue Interrupt => e
@@ -261,11 +198,25 @@ class Main < Variables
 
   end # End 'projects_create'
 
+
+
+
+
+
+
+
   # Method for reading the json file
   def read_json(filename)
     json_file_config = File.read("#{filename}")
     @parse_json_config = JSON.parse(json_file_config)
   end
+
+
+
+
+
+
+
 
   # Changes the url for production, that is, when starting the server.
   def url_serve
@@ -289,6 +240,13 @@ class Main < Variables
     File.write("./_config.yml", config_yml)
   end
 
+
+
+
+
+
+
+
   # Change the url to build, that is, to perform deploy on the hosting server.
   def url_build
     if not File.exist?("url.json")
@@ -311,7 +269,14 @@ class Main < Variables
     File.write("./_config.yml", config_yml)
   end
 
-  # Commands console
+
+
+
+
+
+
+
+  # Commands system
   def system_commands(cmd)
     begin
       system(cmd)
@@ -321,69 +286,36 @@ class Main < Variables
     end
   end
 
+
+
+
+
+
+
+
+  # Method for print version
+  def version
+    puts "Script version: #{VERSION}"
+  end
+
+
+
+
+
+
+
+
   # Method for test
   def test_
     puts "Hey, little flower, you did an insignificant test."
   end
 
-  # Function for creating folders [DEPRECATED]
-  # def create_folders (options = [])
-  #   FileUtils::mkdir_p options
-  # end
 
-  # Function for remove folders [DEPRECATED]
-  # def remove_folders (options = [])
-  #   FileUtils::rm_rf options
-  # end
 
-  # Function to create page redirect html file. [DEPRECATED]
-  # def create_redirect_page(filename)
-  #   File.open(filename, 'w') do |file|
-  #     file.puts "<!DOCTYPE html>"
-  #     file.puts "<html>"
-  #     file.puts "<head>"
-  #     file.puts "  <meta http-equiv=\"refresh\" content=\"0; url=/\">"
-  #     file.puts "  <title>Redirect</title>"
-  #     file.puts "</head>"
-  #     file.puts "</html>"
-  #   end
-  # end
 
-  # Function to apply option (true | false) of the presentation page. [DEPRECATED]
-  # def hello_page(value)
 
-  #   page_blog_file = "2-blog.#{CONFIG['markdown_ext']}"
-  #   indexmd_file = "index.#{CONFIG['markdown_ext']}"
 
-  #   if value == true
 
-  #     remove_folders(["blog/"])
 
-  #     blog_page = File.read("_pages/#{page_blog_file}")
-  #     blog_page.gsub!("published: false", "published: #{value}")
-  #     blog_page.gsub!("menu: false", "menu: #{value}")
-  #     File.write("_pages/#{page_blog_file}", blog_page)
 
-  #     indexmd = File.read("#{indexmd_file}")
-  #     indexmd.gsub!("layout: postlist", "layout: home")
-  #     File.write("#{indexmd_file}", indexmd)
-
-  #   elsif value == false
-
-  #     create_folders(["blog/"])
-  #     create_redirect_page("blog/index.html")
-
-  #     blog_page = File.read("_pages/#{page_blog_file}")
-  #     blog_page.gsub!("published: true", "published: #{value}")
-  #     blog_page.gsub!("menu: true", "menu: #{value}")
-  #     File.write("_pages/#{page_blog_file}", blog_page)
-
-  #     indexmd = File.read("#{indexmd_file}")
-  #     indexmd.gsub!("layout: home", "layout: postlist")
-  #     File.write("#{indexmd_file}", indexmd)
-
-  #   else
-  #     p "[Error] Usage: true | false "
-  #   end
-  # end
-end
+end # end class 'main'

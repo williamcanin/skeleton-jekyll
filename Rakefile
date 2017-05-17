@@ -3,39 +3,39 @@
 # Country/State: Brazil/SP
 # Author : William C. Canin <http://williamcanin.github.com>
 # Page author: http://williamcanin.com
-# Description: Task creation file for the 'config.rb' file.
 
+require "./lib/rb/utils/version.rb"
+require "./lib/rb/utils/variables.rb"
+require "./lib/rb/utils/header_pr.rb"
+require "./lib/rb/utils/header_pa.rb"
+require "./lib/rb/utils/header_po.rb"
 require './lib/rb/main.rb'
 
+# Instantiating class main
+main = Main.new
+
+# Commands for managing Gulp and creating markdown file.
+#
 # Task create header Post
-# Example: bundle exec rake post:blog TITLE="First post"
-# Note: TITLE is Required
 desc "Create new header post"
 namespace :post do
   task :blog do
-    main = Main.new
     main.post_create('postsDirBlog')
   end
 end
 
 # Task create header Page
-# Example: bundle exec rake page:create TITLE="About" LAYOUT="page"
-# Note: TITLE and LAYOUT is Required
 desc "Create new header page"
 namespace :page do
   task :create do
-    main = Main.new
     main.page_create('pagesDir')
   end
 end
 
 # Task create header Project
-# Example: bundle exec rake post:project TITLE="First project"
-# Note: TITLE is Required
 desc "Create new header project"
 namespace :post do
   task :project do
-    main = Main.new
     main.project_create('projectsDir')
   end
 end
@@ -44,7 +44,6 @@ end
 # Note: This task is used for Gulp and not for individual execution.
 desc "Changes the url for production, that is, when starting the server."
 task :url_serve  do
-  main = Main.new
   main.url_serve
 end
 
@@ -52,13 +51,17 @@ end
 # Note: This task is used for Gulp and not for individual execution.
 desc "Change the url to build, that is, to perform deploy on the hosting server."
 task :url_build  do
-  main = Main.new
   main.url_build
 end
+#
+#  ---------------------------------------------------------------------------------------
 
 
-# Commands console for management.
-# Usage: bundle exec rake [ [install | build | serve | post:blog | page:create | post:project] ]
+
+
+# Commands for server installation, compilation, startup and version.
+#
+# Usage: bundle exec rake [ [install | build | serve ] ]
 desc "Install dependencies"
 task :install  do
   system("gem install bundle")
@@ -66,21 +69,29 @@ task :install  do
   p "Finished installation process!"
 end
 
-desc "Start server"
-task :serve  do
-  main = Main.new
-  main.system_commands("$(npm bin)/gulp serve")
-end
-
 desc "Build project"
 task :build  do
-  main = Main.new
   main.system_commands("$(npm bin)/gulp build")
 end
 
+desc "Start server"
+task :serve  do
+  main.system_commands("$(npm bin)/gulp serve")
+end
+
+# Task put version
+desc "Task put version"
+task :version  do
+  main.version
+end
+
+#
+# ------------------------------------------------------------
+
+
+# Task test
 desc "Task test"
 task :test  do
-  main = Main.new
   main.test_
 end
 
@@ -99,7 +110,7 @@ end
 #   end
 # end
 
-# Util configuration
+# Utils
 def ask(message, valid_options)
   if valid_options
     answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)
