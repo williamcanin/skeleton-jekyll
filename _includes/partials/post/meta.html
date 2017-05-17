@@ -1,7 +1,10 @@
 <section class="meta-post">
 
   <time class="datetime" datetime="{{ page.date | date:'%Y-%m-%d' }}">
-    <span class="text">{% datelang page %}{% include datelang/page %}</span>
+    <span class="text">
+      {% datelang page %}
+      {% include datelang/page %}
+    </span>
   </time>
 
   {% if page.comments and loadData.userdata.disqus.username %}

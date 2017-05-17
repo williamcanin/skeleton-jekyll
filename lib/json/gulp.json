@@ -1,4 +1,19 @@
 {
+  "watch":[
+    "_config.yml",
+    "./index.md",
+    "./_layouts/**/*.html",
+    "./_posts/**/*.md",
+    "./_pages/**/*.md",
+    "./_includes/**/*.html",
+    "./_projects/**/*.md",
+    "./_data/**/*.yml",
+    "./gulpfile.js",
+    "./blog/**/*.html",
+    "./*.md",
+    "_sass/**/*.scss",
+    "./src/js/**/*.js"
+  ],
   "sources":{
     "js":{
       "dir": "./src/js",

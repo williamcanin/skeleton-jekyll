@@ -9,7 +9,7 @@ ___________________________________________ -->
 
 {% if loadData.website.maintenance.enable == false %}
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<html lang="{{ loadData.website.metatag.locale }}" itemscope itemtype="http://schema.org/WebPage">
 
   <!-- Head
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -33,7 +33,7 @@ ___________________________________________ -->
 
       <!-- Footer
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-      {% include partials/footer.html %}
+      {% include partials/footer/default.html %}
 
     </div>
 
@@ -45,5 +45,5 @@ ___________________________________________ -->
 
 </html>
 {% else %}
-  {% include partials/maintenance/index.html %}
+  {% include partials/maintenance/default.html %}
 {% endif %}

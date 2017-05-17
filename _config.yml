@@ -28,7 +28,7 @@ plugin:
   # To see language support, go to the plugin "_plugins/datelang.rb"
   datelang:
     locale: en_US
-    reload: false
+    reload: true
   # Value for the 'hellopage_setting' plugin
   hellopage:
     enable: true

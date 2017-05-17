@@ -55,12 +55,21 @@ ________________________________________________________________________________
             .on('close', done);
     });
 
-/* JEKYLL SERVE
+/* JEKYLL SERVE [DEPRECATED]
 ______________________________________________________________________________________ */
+// Note: The Jekyll watch function is being disabled. The watch will be monitored by the Gulp task
 
     gulp.task('jekyll-serve', function (done) {
-        return cp.spawn('bundle', ['exec','jekyll','serve'/*,'--incremental'*/], {stdio: 'inherit'})
+        return cp.spawn('bundle', ['exec','jekyll','serve', '--no-watch'/*,'--incremental'*/], {stdio: 'inherit'})
             .on('close', done);
+    });
+
+
+/* REBUILD WHEN IS CHANGED FILES
+______________________________________________________________________________________ */
+
+    gulp.task('watch-files', function () {
+        gulp.watch(configs.watch, ['javascripts','jekyll-build']);
     });
 
 /* TASKS DEFAULTS
@@ -68,4 +77,4 @@ ________________________________________________________________________________
 
     gulp.task('default', taskListing.withFilters(/:/));
     gulp.task('build', ['javascripts','imagemin','jekyll-build']);
-    gulp.task('serve', ['javascripts','jekyll-serve']);
+    gulp.task('serve', ['javascripts','watch-files']);
