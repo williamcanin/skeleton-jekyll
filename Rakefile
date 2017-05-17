@@ -40,6 +40,45 @@ namespace :post do
   end
 end
 
+# Changes the url for production, that is, when starting the server.
+# Note: This task is used for Gulp and not for individual execution.
+desc "Changes the url for production, that is, when starting the server."
+task :url_serve  do
+  main = Main.new
+  main.url_serve
+end
+
+# Change the url to build, that is, to perform deploy on the hosting server.
+# Note: This task is used for Gulp and not for individual execution.
+desc "Change the url to build, that is, to perform deploy on the hosting server."
+task :url_build  do
+  main = Main.new
+  main.url_build
+end
+
+
+# Commands console for management.
+# Usage: bundle exec rake [ [install | build | serve | post:blog | page:create | post:project] ]
+desc "Install dependencies"
+task :install  do
+  system("gem install bundle")
+  system("bundle install")
+  p "Finished installation process!"
+end
+
+desc "Start server"
+task :serve  do
+  main = Main.new
+  main.system_commands("$(npm bin)/gulp serve")
+end
+
+desc "Build project"
+task :build  do
+  main = Main.new
+  main.system_commands("$(npm bin)/gulp build")
+end
+
+
 # Task to turn the presentation page on and off. [DEPRECATED]
 # Example1: bundle exec rake hello:true
 # Example2: bundle exec rake hello:false

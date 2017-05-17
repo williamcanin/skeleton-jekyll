@@ -14,10 +14,6 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
-
 # Settings for the plugins in the _plugins folder.
 plugin:
   imager:
@@ -45,6 +41,10 @@ share:
 #  --- SESSION PRIVATE [Do not change anything in the private session unless you know what you are doing.]
 # __________________________________________________________________________________________________________
 
+# Automatic not change
+url: "https://williamcanin.com"
+baseurl: "/blog"
+
 # Settings Default
 include: ['_pages','_blog']
 markdown: kramdown
@@ -71,8 +71,6 @@ keep_files: [images]
 
 # Build local / Server
 destination: _site
-port: 4000
-host: localhost
 
 # Config SASS
 sass:
@@ -88,6 +86,7 @@ compress_html:
 
 # Exclude files (or folders) in compilation.
 exclude:
+  - url.json
   - node_modules
   - lib
   - backup

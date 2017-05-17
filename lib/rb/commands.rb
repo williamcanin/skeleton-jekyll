@@ -7,6 +7,7 @@
 # Description: Script management.
 
 require "fileutils"
+require "json"
 
 
 # Class to set global variables
@@ -201,6 +202,61 @@ Example: rake post:project TITLE=\"My project\"")
       end
   end # End 'projects_create'
 
+  # Method for reading the json file
+  def read_json(filename)
+    json_file_config = File.read("#{filename}")
+    @parse_json_config = JSON.parse(json_file_config)
+  end
+
+  # Changes the url for production, that is, when starting the server.
+  def url_serve
+    if not File.exist?("url.json")
+      p "[ERROR] The file 'url.json' not exist. Aborted!"
+      exit
+    end
+    read_json("url.json")
+    url = @parse_json_config['website']['url']
+    baseurl = @parse_json_config['website']['baseurl']
+    if not File.exist?("lib/json/gulp.json")
+      p "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!"
+      exit
+    end
+    read_json("lib/json/gulp.json")
+    port = @parse_json_config['browserSync']['port']
+
+    config_yml = File.read("./_config.yml")
+    config_yml.gsub!("url: \"#{url}\"", "url: \"http://localhost:#{port}\"")
+    config_yml.gsub!("baseurl: \"#{baseurl}\"", "baseurl: \"\"")
+    File.write("./_config.yml", config_yml)
+  end
+
+  # Change the url to build, that is, to perform deploy on the hosting server.
+  def url_build
+    if not File.exist?("url.json")
+      p "[ERROR] The file 'url.json' not exist. Aborted!"
+      exit
+    end
+    read_json("url.json")
+    url = @parse_json_config['website']['url']
+    baseurl = @parse_json_config['website']['baseurl']
+    if not File.exist?("lib/json/gulp.json")
+      p "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!"
+      exit
+    end
+    read_json("lib/json/gulp.json")
+    port = @parse_json_config['browserSync']['port']
+
+    config_yml = File.read("./_config.yml")
+    config_yml.gsub!("url: \"http://localhost:#{port}\"", "url: \"#{url}\"")
+    config_yml.gsub!("baseurl: \"\"", "baseurl: \"#{baseurl}\"")
+    File.write("./_config.yml", config_yml)
+  end
+
+  # Commands console
+  def system_commands(cmd)
+    system(cmd)
+  end
+
   # Function for creating folders [DEPRECATED]
   # def create_folders (options = [])
   #   FileUtils::mkdir_p options
@@ -261,5 +317,4 @@ Example: rake post:project TITLE=\"My project\"")
   #     p "[Error] Usage: true | false "
   #   end
   # end
-
 end
