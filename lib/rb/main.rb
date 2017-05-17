@@ -30,18 +30,30 @@ class Main < Variables
 
     # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirPost']}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
-    title_post = ENV["TITLE"]
-    category = ENV["CATEGORY"]
 
-    if category.nil?
-      abort("You must enter the CATEGORY name! Aborted :(
-Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
-    end
+    # [DEPRECATED]
+    # title_post = ENV["TITLE"]
+    # category = ENV["CATEGORY"]
 
-    if title_post.nil?
-      abort("You must enter the TITLE name! Aborted :(
-Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
-    end
+    title_post = ''
+    category = ''
+
+    begin
+      puts "Press ctrl-C when you get bored"
+
+      STDOUT.puts "Add TITLE:"
+      title_post = STDIN.gets.chomp
+
+      if title_post.nil? or title_post.empty?
+        abort("You must enter the TITLE name! Aborted :(")
+      end
+
+      STDOUT.puts "Add CATEGORY:"
+      category = STDIN.gets.chomp
+
+      if category.nil?  or category.empty?
+        abort("You must enter the CATEGORY name! Aborted :(")
+      end
 
       slug = title_post.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
@@ -85,26 +97,52 @@ Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
           puts "Created successfully!"
         end
       end
+
+    rescue Interrupt => e
+      puts
+      puts "Operation aborted!"
+    end
+
   end # End 'post_create'
+
+
+
+
+
+
+
+
 
   # How to create header page
   def page_create(dirPages)
 
     # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirPages']}' directory not found.") unless FileTest.directory?(CONFIG[dirPages])
-    title_page = ENV["TITLE"]
-    layout = ENV["LAYOUT"]
 
-    if title_page.nil?
-      abort("You must enter the TITLE name! Aborted :(
-Example: rake page:create TITLE=\"My page\" LAYOUT=\"page\"")
-    end
+    # [DEPRECATED]
+    # title_page = ENV["TITLE"]
+    # layout = ENV["LAYOUT"]
 
-    if layout.nil?
-      abort("You must enter the LAYOUT name! Aborted :(
-Example: rake page:create TITLE=\"My page\" LAYOUT=\"page\"
-Note: If you do not use layout, leave 'null'")
-    end
+    title_page = ''
+    layout = ''
+
+    begin
+      puts "Press ctrl-C when you get bored"
+
+      STDOUT.puts "Add TITLE:"
+      title_page = STDIN.gets.chomp
+
+      if title_page.nil? or title_page.empty?
+        abort("You must enter the TITLE name! Aborted :(")
+      end
+
+      STDOUT.puts "Add LAYOUT:"
+      layout = STDIN.gets.chomp
+
+      if layout.nil?  or layout.empty?
+        abort("You must enter the CATEGORY name! Aborted :(")
+      end
+
 
       slug = title_page.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
@@ -155,6 +193,12 @@ Note: If you do not use layout, leave 'null'")
           puts "Created successfully!"
         end
       end
+
+    rescue Interrupt => e
+      puts
+      puts "Operation aborted!"
+    end
+
   end # End 'page_create'
 
 
@@ -163,12 +207,21 @@ Note: If you do not use layout, leave 'null'")
 
     # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirProjects']}' directory not found.") unless FileTest.directory?(CONFIG[dirProjects])
-    title_project = ENV["TITLE"]
 
-    if title_project.nil?
-      abort("You must enter the TITLE name! Aborted :(
-Example: rake post:project TITLE=\"My project\"")
-    end
+    # [DEPRECATED]
+    # title_project = ENV["TITLE"]
+
+    title_project = ''
+
+    begin
+      puts "Press ctrl-C when you get bored"
+
+      STDOUT.puts "Add TITLE:"
+      title_project = STDIN.gets.chomp
+
+      if title_project.nil? or title_project.empty?
+        abort("You must enter the TITLE name! Aborted :(")
+      end
 
       slug = title_project.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
@@ -200,6 +253,12 @@ Example: rake post:project TITLE=\"My project\"")
           puts "Created successfully!"
         end
       end
+
+    rescue Interrupt => e
+      puts
+      puts "Operation aborted!"
+    end
+
   end # End 'projects_create'
 
   # Method for reading the json file
@@ -254,7 +313,17 @@ Example: rake post:project TITLE=\"My project\"")
 
   # Commands console
   def system_commands(cmd)
-    system(cmd)
+    begin
+      system(cmd)
+    rescue Interrupt => e
+      puts
+      puts "Operation aborted!"
+    end
+  end
+
+  # Method for test
+  def test_
+    puts "Hey, little flower, you did an insignificant test."
   end
 
   # Function for creating folders [DEPRECATED]

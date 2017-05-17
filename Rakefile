@@ -5,7 +5,7 @@
 # Page author: http://williamcanin.com
 # Description: Task creation file for the 'config.rb' file.
 
-require './lib/rb/commands.rb'
+require './lib/rb/main.rb'
 
 # Task create header Post
 # Example: bundle exec rake post:blog TITLE="First post"
@@ -78,6 +78,11 @@ task :build  do
   main.system_commands("$(npm bin)/gulp build")
 end
 
+desc "Task test"
+task :test  do
+  main = Main.new
+  main.test_
+end
 
 # Task to turn the presentation page on and off. [DEPRECATED]
 # Example1: bundle exec rake hello:true
