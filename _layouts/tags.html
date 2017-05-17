@@ -8,9 +8,8 @@ ___________________________________________ -->
 
 
 {% if loadData.website.maintenance.enable == false %}
-
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
 
   <!-- Head
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -18,34 +17,36 @@ ___________________________________________ -->
 
   <body>
 
-  <!-- Nav
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  {% include partials/nav/default.html %}
+    <!-- Nav with search
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include partials/nav/blog.html %}
 
-    <main class="main" id="top" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-      <div class="container wrapper">
-        <div class="content-main">
-          {{ content }}
-        </div>
-      </div>
+    <!-- Header post (banner)
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% include partials/tags/header.html %}
+
+    <section class="tags" itemscope="itemscope" itemtype="http://schema.org/Blog">
+
+      <!-- Add content for this layout -->
+      {{ content }}
 
       <!-- Footer
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       {% include partials/footer.html %}
 
-    </main>
+    </section>
 
     <!-- Javascripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     {% include scripts/default.html %}
 
+    <script type="text/javascript" src="{{ '/assets/js/jekyll-search.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+    {% include scripts/search.html %}
+
   </body>
 
 </html>
-
 {% else %}
-
   {% include partials/maintenance/index.html %}
-
 {% endif %}

@@ -54,6 +54,11 @@ website:
       text:
         title: Category
         subtitle: Here are posts referring to categories.
+  tags:
+    header:
+      text:
+        title: Tags
+        subtitle: This is a cloud of posts tags.
   post:
     author:
       image:

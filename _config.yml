@@ -51,13 +51,20 @@ markdown: kramdown
 highlighter: pygments
 permalink: /blog/:title/
 
-# Archive
+# Collections
+collections:
+  projects:
+    output: true
+
+# Plugin jekyll-archive - https://github.com/jekyll/jekyll-archives
 jekyll-archives:
   enabled:
     - categories
+    - tags
   layout: archive
   permalinks:
     category: '/blog/category/:name/'
+    tag: '/blog/tags/:name/'
 
 # Keeping static files
 keep_files: [images]
@@ -90,6 +97,8 @@ exclude:
   - Gemfile.lock
   - CHANGELOG
   - LICENSE.txt
+  - package.json
+  - gulpfile.js
   - COPYING
   - "**/*.txt"
   - README.md

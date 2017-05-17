@@ -29,10 +29,16 @@ class Main < Variables
     # Variables for post/blog
     abort("rake aborted: '#{CONFIG['dirPost']}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
     title_post = ENV["TITLE"]
+    category = ENV["CATEGORY"]
+
+    if category.nil?
+      abort("You must enter the CATEGORY name! Aborted :(
+Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
+    end
 
     if title_post.nil?
       abort("You must enter the TITLE name! Aborted :(
-Example: rake post:blog TITLE=\"My post\"")
+Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
     end
 
       slug = title_post.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
@@ -58,7 +64,7 @@ Example: rake post:blog TITLE=\"My post\"")
           file.puts("title: #{title_post.gsub(/-/,' ')}")
           file.puts("subtitle: ")
           file.puts("date: #{date_hour}")
-          file.puts("categories: ")
+          file.puts("category: #{category}")
           file.puts("tags: ['tag1','tag2','tag3']")
           file.puts("published: false")
           file.puts("comments: false")

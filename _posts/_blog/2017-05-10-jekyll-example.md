@@ -3,7 +3,7 @@ layout: post
 title:  "Jekyll Example"
 subtitle: "Post example Skeleton Jekyll"
 date:   2017-05-10 05:16:01 -0300 
-categories: example
+# categories: example
 category: [example]
 # Add tags to make search easier
 tags: ['example','welcome','jekyll']

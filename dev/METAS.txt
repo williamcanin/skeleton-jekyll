@@ -3,8 +3,10 @@
 [x] gulpfile para minificar javascripts
 [x] adiciona maintenance
 [x] adicionar disqus
-[] adicionado --incremental no gulpfile.js
-[] tags
-[] categorias
+[x] adicionado --incremental no gulpfile.js
+[?] pdf jekyll
+[x] tags
+[] projetos
+[x] categorias
 [x] indice plugins
 [x] simple Search Jekyll adicionar

@@ -1,18 +1,12 @@
-<!-- Include Liquid _data/data
-___________________________________________ -->
-{% include liquid/data %}
-
 <header class="header-postlist" role="banner">
-
   <div class="content">
   {% if loadData.website.postlist.header.style == 'text' %}
-    <h1 class="post-title" itemprop="name">{{ loadData.website.postlist.header.text.title }}</h1>
-      <p itemprop="description" class="subtitle">{{ loadData.website.postlist.header.text.subtitle }}</p>
+    <h1 class="title" itemprop="name">{{ loadData.website.postlist.header.text.title }}</h1>
+      <p class="subtitle" itemprop="description">{{ loadData.website.postlist.header.text.subtitle }}</p>
   {% else if  loadData.website.postlist.header.style == 'art' %}
     Include Art here
   {% else %}
   <h1>Error Header</h1>
   {% endif %}
   </div>
-
 </header>

@@ -10,7 +10,11 @@
       <a href="{{ '/blog/' | prepend: site.baseurl | prepend: site.url }}">Blog</a>
     {% endif %}
   </li>
+
   <li><a href="{{ '/blog/category/' | prepend: site.baseurl | prepend: site.url }}">Category</a></li>
+
+  <li><a href="{{ '/blog/tags/' | prepend: site.baseurl | prepend: site.url }}">Tag cloud</a></li>
+
     {% if site.plugin.hellopage.enable == false %}
       {% for page in site.pages %}
         {% if page.title and page.menu == true %}
@@ -20,9 +24,11 @@
         {% endif %}
       {% endfor %}
     {% endif %}
+
     <li>
-      <a href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">Feed</a>
+      <a href="{{ '/blog/feed.xml' | prepend: site.baseurl | prepend: site.url }}">Feed</a>
     </li>
+
   </ul>
 
   {% include partials/search-box.html %}

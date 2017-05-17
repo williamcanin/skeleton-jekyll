@@ -1,0 +1,9 @@
+---
+layout: tags
+---
+
+<div class="content">
+  {% for tag in site.tags %}
+    <a href="{{ '/blog/tags/' | prepend: site.baseurl | prepend: site.url }}/{{ tag[0] | slugify }}"> {{ tag[0] }} </a>
+  {% endfor %}
+</div>
