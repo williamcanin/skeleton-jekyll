@@ -16,6 +16,7 @@ class Variables
   CONFIG = {
     'postsDirBlog' => File.join(SOURCE, "_posts/_blog"),
     'pagesDir' => File.join(SOURCE, "_pages"),
+    'projectsDir' => File.join(SOURCE, "_projects"),
     'markdown_ext' => "md"
   }
 
@@ -23,7 +24,7 @@ end # End 'Variables'
 
 class Main < Variables
 
-  # How to create posts
+  # How to create header posts
   def post_create(dirPost)
 
     # Variables for post/blog
@@ -85,7 +86,7 @@ Example: rake post:blog TITLE=\"My post\" CATEGORY=\"Linux\"")
       end
   end # End 'post_create'
 
-  # How to create page
+  # How to create header page
   def page_create(dirPages)
 
     # Variables for post/blog
@@ -114,11 +115,13 @@ Note: If you do not use layout, leave 'null'")
       end
       filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
 
-      # Count the number of existing pages and add +1
+      # Count the number of existing pages and add +1 [DEPRECATED]
       count_pages = Dir.glob(CONFIG['pagesDir']+"/*.*").size
       next_number_page = count_pages + 1
 
-      filename = File.join(CONFIG[dirPages], "#{next_number_page}-#{slug}.#{CONFIG['markdown_ext']}")
+      # filename = File.join(CONFIG[dirPages], "#{next_number_page}-#{slug}.#{CONFIG['markdown_ext']}") # DEPRECATED
+
+      filename = File.join(CONFIG[dirPages], "#{slug}.#{CONFIG['markdown_ext']}")
 
       if File.exist?(filename)
         abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
@@ -152,6 +155,51 @@ Note: If you do not use layout, leave 'null'")
         end
       end
   end # End 'page_create'
+
+
+  # How to create header projects
+  def project_create(dirProjects)
+
+    # Variables for post/blog
+    abort("rake aborted: '#{CONFIG['dirProjects']}' directory not found.") unless FileTest.directory?(CONFIG[dirProjects])
+    title_project = ENV["TITLE"]
+
+    if title_project.nil?
+      abort("You must enter the TITLE name! Aborted :(
+Example: rake post:project TITLE=\"My project\"")
+    end
+
+      slug = title_project.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      begin
+        date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
+        date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
+      rescue => e
+        puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
+        exit -1
+      end
+      filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
+      filename = File.join(CONFIG[dirProjects], "#{date}-#{slug}.#{CONFIG['markdown_ext']}")
+
+      if File.exist?(filename)
+        abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+      end
+
+      puts "Creating new post: #{filename}"
+      if dirProjects == 'projectsDir'
+        open(filename, 'w') do |file|
+          file.puts("---")
+          file.puts("layout: projectslist")
+          file.puts("title: #{title_project.gsub(/-/,' ')}")
+          file.puts("date: #{date_hour}")
+          file.puts("published: false")
+          file.puts("")
+          file.puts("# Do not change the permalink setting")
+          file.puts("permalink: /projects/")
+          file.puts("---")
+          puts "Created successfully!"
+        end
+      end
+  end # End 'projects_create'
 
   # Function for creating folders [DEPRECATED]
   # def create_folders (options = [])

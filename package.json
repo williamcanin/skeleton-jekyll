@@ -4,7 +4,7 @@
   "description": "Skeleton Jekyll - Skeleton for Jekyll",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Hey\""
+    "test": "echo \"Hey, this is a test.\""
   },
   "repository": {
     "type": "git",

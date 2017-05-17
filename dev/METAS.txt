@@ -6,7 +6,8 @@
 [x] adicionado --incremental no gulpfile.js
 [?] pdf jekyll
 [x] tags
-[] projetos
+[x] projetos
+[] usar _data no hellopage 
 [x] categorias
 [x] indice plugins
 [x] simple Search Jekyll adicionar

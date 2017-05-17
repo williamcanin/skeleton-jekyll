@@ -10,7 +10,7 @@ require './lib/rb/commands.rb'
 # Task create header Post
 # Example: bundle exec rake post:blog TITLE="First post"
 # Note: TITLE is Required
-desc "Create new post"
+desc "Create new header post"
 namespace :post do
   task :blog do
     main = Main.new
@@ -21,11 +21,22 @@ end
 # Task create header Page
 # Example: bundle exec rake page:create TITLE="About" LAYOUT="page"
 # Note: TITLE and LAYOUT is Required
-desc "Create new page"
+desc "Create new header page"
 namespace :page do
   task :create do
     main = Main.new
     main.page_create('pagesDir')
+  end
+end
+
+# Task create header Project
+# Example: bundle exec rake post:project TITLE="First project"
+# Note: TITLE is Required
+desc "Create new header project"
+namespace :post do
+  task :project do
+    main = Main.new
+    main.project_create('projectsDir')
   end
 end
 
