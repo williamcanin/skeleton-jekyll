@@ -69,12 +69,14 @@ class Main
       title = @value1
       category = @value2
 
+
+
       slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
       rescue => e
-        puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
+        puts "✖ Error - date format must be YYYY-MM-DD, please check you typed it correctly!".red
         exit -1
       end
       filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
@@ -85,6 +87,9 @@ class Main
       end
 
       puts "⚠ Creating new file in: #{filename}".yellow
+
+
+
       if dirPost == 'postsDirBlog'
         create_header_post(filename, title, date_hour, category)
       end
@@ -120,7 +125,7 @@ class Main
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
       rescue => e
-        puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
+        puts "✖ Error - date format must be YYYY-MM-DD, please check you typed it correctly!".red
         exit -1
       end
       filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
@@ -171,7 +176,7 @@ class Main
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
         date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
       rescue => e
-        puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
+        puts "✖ Error - date format must be YYYY-MM-DD, please check you typed it correctly!".red
         exit -1
       end
       filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
@@ -216,14 +221,14 @@ class Main
   # Changes the url for production, that is, when starting the server.
   def url_serve
     if not File.exist?("url.json")
-      p "[ERROR] The file 'url.json' not exist. Aborted!"
+      puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
       exit
     end
     read_json("url.json")
     url = @parse_json_config['website']['url']
     baseurl = @parse_json_config['website']['baseurl']
     if not File.exist?("lib/json/gulp.json")
-      p "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!"
+      puts "✖ [ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
       exit
     end
     read_json("lib/json/gulp.json")
@@ -238,14 +243,14 @@ class Main
   # Change the url to build, that is, to perform deploy on the hosting server.
   def url_build
     if not File.exist?("url.json")
-      p "[ERROR] The file 'url.json' not exist. Aborted!"
+      puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
       exit
     end
     read_json("url.json")
     url = @parse_json_config['website']['url']
     baseurl = @parse_json_config['website']['baseurl']
     if not File.exist?("lib/json/gulp.json")
-      p "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!"
+      puts "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
       exit
     end
     read_json("lib/json/gulp.json")
@@ -291,7 +296,7 @@ end
 
   # Method for print version
   def version
-    puts "Script version: #{VERSION}"
+    puts "Script version: #{VERSION}".cyan
   end
 
 
@@ -303,7 +308,7 @@ end
 
   # Method for test
   def test_
-    puts "Hey, little flower, you did an insignificant test."
+    puts "Hey, little flower, you did an insignificant test.".cyan
   end
 
 

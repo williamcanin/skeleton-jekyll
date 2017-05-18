@@ -42,8 +42,8 @@ share:
 # __________________________________________________________________________________________________________
 
 # Automatic not change
-url: "http://localhost:3000"
-baseurl: ""
+url: "https://williamcanin.com"
+baseurl: "/skeleton-jekyll"
 
 # Settings Default
 include: ['_pages','_blog']

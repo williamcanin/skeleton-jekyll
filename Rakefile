@@ -1,8 +1,7 @@
 # File: Rakefile
-# Language: RakeFile
 # Country/State: Brazil/SP
 # Author : William C. Canin <http://williamcanin.github.com>
-# Page author: http://williamcanin.com
+# Website: http://williamcanin.com
 
 require "./lib/rb/utils/version.rb"
 require "./lib/rb/utils/variables.rb"
@@ -21,7 +20,7 @@ main = Main.new
 # Commands for managing Gulp and creating markdown file.
 #
 # Task create header Post
-desc "Create new header post"
+desc "Create the header for a new blog post."
 namespace :post do
   task :blog do
     main.post_create('postsDirBlog')
@@ -29,7 +28,7 @@ namespace :post do
 end
 
 # Task create header Page
-desc "Create new header page"
+desc "Create the header for a new page."
 namespace :page do
   task :create do
     main.page_create('pagesDir')
@@ -37,7 +36,7 @@ namespace :page do
 end
 
 # Task create header Project
-desc "Create new header project"
+desc "Create the header for a new project."
 namespace :post do
   task :project do
     main.project_create('projectsDir')
@@ -46,14 +45,14 @@ end
 
 # Changes the url for production, that is, when starting the server.
 # Note: This task is used for Gulp and not for individual execution.
-desc "Changes the url for production, that is, when starting the server."
+desc "This task is used for Gulp and not for individual execution."
 task :url_serve  do
   main.url_serve
 end
 
 # Change the url to build, that is, to perform deploy on the hosting server.
 # Note: This task is used for Gulp and not for individual execution.
-desc "Change the url to build, that is, to perform deploy on the hosting server."
+desc "This task is used for Gulp and not for individual execution."
 task :url_build  do
   main.url_build
 end
@@ -66,17 +65,17 @@ end
 # Commands for server installation, compilation, startup and version.
 #
 # Usage: bundle exec rake [ [install | build | serve ] ]
-desc "Install dependencies"
+desc "Installs the project dependencies."
 task :install  do
   main.install
 end
 
-desc "Build project"
+desc "Compile the project to deploy, depends on installing the dependencies."
 task :build  do
   main.system_commands("$(npm bin)/gulp build")
 end
 
-desc "Start server"
+desc "Starts the server for project production in the browser."
 task :serve  do
   main.system_commands("$(npm bin)/gulp serve")
 end
@@ -87,26 +86,26 @@ end
 # Interaction Tasks
 #
 # Task put version
-desc "Task put version"
+desc "Show the version number."
 task :version  do
   main.version
 end
 
 # Task credits
-desc "Task credits"
+desc "Credits for this script."
 task :credits  do
   main.credits_start
 end
 
 # Task credits
-desc "Task help commands"
+desc "Show help."
 task :help  do
   main.console_header_print
   main.console_content_print
 end
 
 # Task test
-desc "Task test"
+desc "This is something so insignificant ...."
 task :test  do
   main.test_
 end
