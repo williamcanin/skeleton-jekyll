@@ -10,14 +10,18 @@ require "fileutils"
 require "json"
 require "colorize"
 
+include Version
+include ConsolePrint
+
 class Main
 
   # Include partials - Modules
-  include Version
   include Variables
   include HeaderProject
   include HeaderPage
   include HeaderPost
+  include Credits
+
 
 
 
@@ -27,9 +31,9 @@ class Main
     @value1 = value1
     @value2 = value2
 
-    puts "---------------------------------------".black.on_green.blink
-    puts "[ Welcome to the creation of headers! ]".black.on_green.blink
-    puts "---------------------------------------\n".black.on_green.blink
+    console_header_print
+    puts @HEADER.black.on_green.blink;
+
     puts "⚠ Press ctrl-C when you get bored\n".yellow
     puts "[ #{msg1} ]".black.on_green.blink
     STDOUT.puts "→ Add #{value1.upcase}:".cyan
@@ -122,8 +126,8 @@ class Main
       filepath = File.join("#{date}-#{slug}.#{CONFIG['markdown_ext']}")
 
       # Count the number of existing pages and add +1 [DEPRECATED]
-      count_pages = Dir.glob(CONFIG['pagesDir']+"/*.*").size
-      next_number_page = count_pages + 1
+      # count_pages = Dir.glob(CONFIG['pagesDir']+"/*.*").size
+      # next_number_page = count_pages + 1
 
       # filename = File.join(CONFIG[dirPages], "#{next_number_page}-#{slug}.#{CONFIG['markdown_ext']}") # DEPRECATED
 
@@ -139,8 +143,7 @@ class Main
       end
 
     rescue Interrupt => e
-      puts
-      puts "Operation aborted!"
+      puts "\n⚠ Operation aborted!".yellow
     end
 
   end # End 'page_create'
@@ -185,7 +188,7 @@ class Main
 
     rescue Interrupt => e
       puts
-      puts "Operation aborted!"
+      puts "⚠ Operation aborted!".yellow
     end
 
   end # End 'projects_create'
@@ -232,13 +235,6 @@ class Main
     File.write("./_config.yml", config_yml)
   end
 
-
-
-
-
-
-
-
   # Change the url to build, that is, to perform deploy on the hosting server.
   def url_build
     if not File.exist?("url.json")
@@ -273,14 +269,22 @@ class Main
     begin
       system(cmd)
     rescue Interrupt => e
-      puts
-      puts "Operation aborted!"
+      puts "\n⚠ Operation aborted!".yellow
     end
   end
 
 
 
-
+def install
+  console_header_print
+  puts @HEADER.black.on_green.blink;
+  puts "⚠ Press ctrl-C when you get bored\n".yellow
+  puts "[ Dependency installer ]".black.on_green.blink
+  puts "→ Starting.Wait ...".cyan
+  system("gem install bundle")
+  system("bundle install")
+  puts "\n✔ Finished installation process!\n".green
+end
 
 
 

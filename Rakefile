@@ -9,7 +9,11 @@ require "./lib/rb/utils/variables.rb"
 require "./lib/rb/utils/header_pr.rb"
 require "./lib/rb/utils/header_pa.rb"
 require "./lib/rb/utils/header_po.rb"
+require "./lib/rb/utils/credits.rb"
+require "./lib/rb/utils/console_print.rb"
 require './lib/rb/main.rb'
+
+
 
 # Instantiating class main
 main = Main.new
@@ -64,9 +68,7 @@ end
 # Usage: bundle exec rake [ [install | build | serve ] ]
 desc "Install dependencies"
 task :install  do
-  system("gem install bundle")
-  system("bundle install")
-  p "Finished installation process!"
+  main.install
 end
 
 desc "Build project"
@@ -78,22 +80,42 @@ desc "Start server"
 task :serve  do
   main.system_commands("$(npm bin)/gulp serve")
 end
+#
+# ------------------------------------------------------------
 
+
+# Interaction Tasks
+#
 # Task put version
 desc "Task put version"
 task :version  do
   main.version
 end
 
-#
-# ------------------------------------------------------------
+# Task credits
+desc "Task credits"
+task :credits  do
+  main.credits_start
+end
 
+# Task credits
+desc "Task help commands"
+task :help  do
+  main.console_header_print
+  main.console_content_print
+end
 
 # Task test
 desc "Task test"
 task :test  do
   main.test_
 end
+#
+# -----------------------------------------------------------
+
+
+
+
 
 # Task to turn the presentation page on and off. [DEPRECATED]
 # Example1: bundle exec rake hello:true
