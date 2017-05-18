@@ -3,10 +3,18 @@
 Simple in appearance, and powerful in management.
 Create Jekyll layout with this full-featured skeleton.
 
-[ REQUIREMENTS ]
+[ MINIMUM REQUIREMENTS ]
 
 - Git
 - Ruby
+
+[ FEATURE ]
+
+- Category and Tag posts. Use plugin: https://github.com/jekyll/jekyll-archives
+- Gulp tasks
+- BrowserSync, for follow-up of change.
+- Create header for posts, pages, and projects (Using Ruby code).
+- Dependency installer with just one command.
 
 [ USAGE ]
 
@@ -30,10 +38,19 @@ shell> rake build
 
 Note: Change configuration in file: 'url.json'.
 
-
+-----------------------------------------------
 For more commands, access the 'help' command:
 
 shell> rake help
+-----------------------------------------------
+
+[ CONFIGURATION ]
+
+The configuration for your project will be in the '_data/data.yml' file, where you have to edit the values.
+
+The '_config.yml' file also has some settings you want to make.
+
+To change the url to your website, you have to do it in the 'url.json' file, since the 'url' and 'baseurl' variables in the '_config.yml' file will be filled automatically through the file 'url.json'.
 
 [ LICENSE ]
 
