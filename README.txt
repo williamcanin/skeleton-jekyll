@@ -13,7 +13,7 @@ Create Jekyll layout with this full-featured skeleton.
 1 - Clone and Enter folder:
 
 shell> git clone https://github.com/williamcanin/skeleton-jekyll.git
-shell> skeleton-jekyll
+shell> cd skeleton-jekyll
 
 2 - Install
 
