@@ -84,9 +84,9 @@ website:
 # Category: User Data.
 userdata:
   email:
-  twitter:
+  twitter: #@yout_user
   disqus:
-    username: williamcanin
+    username: #your user
  # You can add at most 4 social.
   socials:
     title: Follow Me
