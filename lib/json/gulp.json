@@ -15,6 +15,7 @@
     "./gulpfile.js",
     "./blog/**/*.html",
     "./*.md",
+    "./*.xml",
     "_sass/**/*.scss",
     "./src/js/**/*.js"
   ],

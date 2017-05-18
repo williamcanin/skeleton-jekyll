@@ -11,6 +11,7 @@ comments: true
 share: true
 excerpted: |
     You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site ...
+
 # Does not change and does not remove 'script_js' variables
 script_js: [jekyll-search.min.js, post.min.js]
 

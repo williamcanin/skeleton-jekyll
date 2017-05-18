@@ -100,7 +100,7 @@ exclude:
   - gulpfile.js
   - COPYING
   - "**/*.txt"
-  - README.md
+  - README.txt
   - init.sh
   - Rakefile
 

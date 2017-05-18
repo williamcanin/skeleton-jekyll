@@ -14,11 +14,9 @@ module HeaderPost
           file.puts("excerpted: |
   \"Put here your excerpt\"")
           file.puts("# Does not change and does not remove 'script_js' variable.")
-          file.puts("script_js: [jekyll-search.min.js, post.js]")
-          file.puts("")
+          file.puts("script_js: [jekyll-search.min.js, post.js]\n\n")
           file.puts("# Events Google Analytics")
-          file.puts("ga_event: false")
-          file.puts("")
+          file.puts("ga_event: false\n\n")
           file.puts("# Does not change and does not remove 'script_html' variable.")
           file.puts("script_html: [search.html]")
           file.puts("---")
