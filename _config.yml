@@ -41,7 +41,8 @@ share:
 #  --- SESSION PRIVATE [Do not change anything in the private session unless you know what you are doing.]
 # __________________________________________________________________________________________________________
 
-# Automatic not change
+# Automatic URL and BASEURL, not CHANGE!!!
+# You should change in the file 'url.json'.
 url: "http://localhost:3000"
 baseurl: ""
 

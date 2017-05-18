@@ -60,7 +60,7 @@ class Main
   # How to create header posts
   def post_create(dirPost)
 
-    abort("rake aborted: '#{CONFIG['dirPost']}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
+    abort("rake aborted: '#{CONFIG[dirPost]}' directory not found.") unless FileTest.directory?(CONFIG[dirPost])
 
     begin
 
@@ -220,18 +220,18 @@ class Main
 
   # Changes the url for production, that is, when starting the server.
   def url_serve
-    if not File.exist?("url.json")
+    if not File.exist?(CONFIG['urlWebsite'])
       puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
       exit
     end
-    read_json("url.json")
+    read_json(CONFIG['urlWebsite'])
     url = @parse_json_config['website']['url']
     baseurl = @parse_json_config['website']['baseurl']
-    if not File.exist?("lib/json/gulp.json")
+    if not File.exist?(CONFIG['gulpConfig'])
       puts "✖ [ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
       exit
     end
-    read_json("lib/json/gulp.json")
+    read_json(CONFIG['gulpConfig'])
     port = @parse_json_config['browserSync']['port']
 
     config_yml = File.read("./_config.yml")
@@ -242,18 +242,18 @@ class Main
 
   # Change the url to build, that is, to perform deploy on the hosting server.
   def url_build
-    if not File.exist?("url.json")
+    if not File.exist?(CONFIG['urlWebsite'])
       puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
       exit
     end
-    read_json("url.json")
+    read_json(CONFIG['urlWebsite'])
     url = @parse_json_config['website']['url']
     baseurl = @parse_json_config['website']['baseurl']
-    if not File.exist?("lib/json/gulp.json")
+    if not File.exist?(CONFIG['gulpConfig'])
       puts "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
       exit
     end
-    read_json("lib/json/gulp.json")
+    read_json(CONFIG['gulpConfig'])
     port = @parse_json_config['browserSync']['port']
 
     config_yml = File.read("./_config.yml")
