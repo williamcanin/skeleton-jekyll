@@ -28,11 +28,8 @@ ___________________________________________ -->
 
       <div class="details">
 
-      {% for category in site.categories %}
-        <a href="#{{ category | first | remove:' ' }}"><strong>{{ category | first }}</strong></a> {% if forloop.last %}.{% else %}, {% endif %}
-      {% endfor %}
+       <h1>Category: {{ page.title }}</h1>
 
-       <h1>Category: {{ category.name }}</h1>
 
       {% for post in page.posts %}
         <!-- Meta

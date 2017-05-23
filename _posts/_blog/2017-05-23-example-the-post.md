@@ -3,8 +3,8 @@ layout: post
 title: Example the post
 subtitle: 
 date: 2017-05-23 13:02:46
-category: example
-tags: ['jekyll','example']
+category: "UI UX"
+tags: ['jekyll','example', 'sql mysql']
 published: true
 comments: false
 share: false
