@@ -4,7 +4,7 @@ title: Example the post
 subtitle: 
 date: 2017-05-23 13:02:46
 category: "UI UX"
-tags: ['jekyll','example', 'sql mysql']
+tags: ['jekyll','example']
 published: true
 comments: false
 share: false
