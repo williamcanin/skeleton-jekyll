@@ -28,7 +28,11 @@ ___________________________________________ -->
 
       <div class="details">
 
-       <h1>Categgoy: {{ page.category }}</h1>
+      {% for category in site.categories %}
+        <a href="#{{ category | first | remove:' ' }}"><strong>{{ category | first }}</strong></a> {% if forloop.last %}.{% else %}, {% endif %}
+      {% endfor %}
+
+       <h1>Category: {{ category.name }}</h1>
 
       {% for post in page.posts %}
         <!-- Meta
@@ -57,6 +61,9 @@ ___________________________________________ -->
     <!-- Javascripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     {% include scripts/default.html %}
+
+    <script type="text/javascript" src="{{ '/assets/js/jekyll-search.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+    {% include scripts/search.html %}
 
   </body>
 
