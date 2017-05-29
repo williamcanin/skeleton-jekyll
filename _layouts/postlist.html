@@ -30,7 +30,8 @@ ___________________________________________ -->
     <section class="postlist" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
 
-      {% for category in site.categories %}
+      {% assign sorted_cats = site.categories | sort %}
+      {% for category in sorted_cats %}
 
         <div class="details">
 
@@ -39,7 +40,8 @@ ___________________________________________ -->
           <div id="#{{ category_name | slugize }}"></div>
           <h3 class="category-head">{{ category_name }}</h3>
 
-          {% for post in site.categories[category_name] %}
+          {% assign cat_name = site.categories[category_name] %}
+          {% for post in cat_name %}
 
             <time class="time" itemprop="datePublished" datetime="{{ post.date | date:'%Y-%m-%d' }}">
               {% datelang post %}
