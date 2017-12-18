@@ -25,7 +25,7 @@ shell> cd skeleton-jekyll
 
 2 - Install
 
-shell> gem install bundler rake
+shell> gem install bundler colorize rake
 shell> rake install
 
 3 - Start server:
