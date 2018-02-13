@@ -25,7 +25,6 @@ shell> cd skeleton-jekyll
 
 2 - Install
 
-shell> gem install bundler colorize rake
 shell> rake install
 
 3 - Start server:
@@ -36,7 +35,7 @@ shell> rake serve
 
 shell> rake build
 
-Note: Change configuration in file: 'url.json'.
+Note: Change configuration in file: 'config/config.json'.
 
 -----------------------------------------------
 For more commands, access the 'help' command:

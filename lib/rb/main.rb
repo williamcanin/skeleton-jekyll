@@ -194,7 +194,7 @@ class Main
     puts "⚠ Press ctrl-C when you get bored\n".yellow
     puts "[ Dependency installer ]".black.on_green.blink
     puts "→ Starting. Wait ...".cyan
-    system_commands("gem install bundler")
+    system_commands("gem install bundler colorize rake")
     system_commands("npm install")
     puts "\n✔ Finished installation process!\n".green
   end
