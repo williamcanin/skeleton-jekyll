@@ -1,3 +1,4 @@
 ---
 layout: postlist
+permalink: /blog/
 ---

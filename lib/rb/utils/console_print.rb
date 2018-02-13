@@ -16,7 +16,7 @@ ENDHEADER
 # Definition of outgoing messages on the console.
 @USAGE = <<ENDUSAGE
 Usage:
-  bundle exec rake [options]
+  rake [options]
 
 ENDUSAGE
 
@@ -39,6 +39,9 @@ Options           Action
   post:blog       Create the header for a new blog post.
   page:create     Create the header for a new page.
   post:project    Create the header for a new project.
+  deploy:source   Starts deploy to GitHub from source code (Linux or OSX).
+  deploy:site     Starts deploy to GitHub from compiled website (Linux or OSX).
+  clean:all       Clears all compiled files, production dependencies and git repository (Linux or OSX).
 
 ENDHELP
 

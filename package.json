@@ -4,7 +4,7 @@
   "description": "Skeleton Jekyll - Skeleton for Jekyll",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Hey, this is a test.\""
+    "postinstall": "bundle install"
   },
   "repository": {
     "type": "git",
@@ -21,14 +21,18 @@
   },
   "homepage": "https://github.com/williamcanin/skeleton-jekyll#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.11",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.18.13",
     "child_process": "^1.0.2",
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-jshint": "^2.0.4",
     "gulp-rename": "^1.2.2",
     "gulp-task-listing": "^1.0.1",
     "gulp-uglify": "^2.1.2",
-    "jshint": "^2.9.4"
+    "jshint": "^2.9.5"
   }
 }

@@ -1,9 +1,10 @@
 backup/
-_site
-node_modules
-.sass-cache
-_vendor
-.jekyll-metadata
+/_site/
+/node_modules/
+/.sass-cache
+/_gems/
+/.jekyll-metadata
 Gemfile.lock
-deploy/deploy
+package-lock.json
 _plugins/.idea
+/temp/

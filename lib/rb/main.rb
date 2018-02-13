@@ -9,6 +9,7 @@
 require "fileutils"
 require "json"
 require "colorize"
+require "rbconfig"
 
 include Version
 include ConsolePrint
@@ -17,13 +18,12 @@ class Main
 
   # Include partials - Modules
   include Variables
+  include Utilities
   include HeaderProject
   include HeaderPage
   include HeaderPost
+  include DeployGithub
   include Credits
-
-
-
 
 
   def enter_parameters(msg1, value1, value2, condition)
@@ -69,8 +69,6 @@ class Main
       title = @value1
       category = @value2
 
-
-
       slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
       begin
         date_hour = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %R:%S')
@@ -88,8 +86,6 @@ class Main
 
       puts "⚠ Creating new file in: #{filename}".yellow
 
-
-
       if dirPost == 'postsDirBlog'
         create_header_post(filename, title, date_hour, category)
       end
@@ -100,11 +96,6 @@ class Main
     end
 
   end # End 'post_create'
-
-
-
-
-
 
 
 
@@ -155,11 +146,6 @@ class Main
 
 
 
-
-
-
-
-
   # How to create header projects
   def project_create(dirProjects)
 
@@ -201,122 +187,25 @@ class Main
 
 
 
-
-
-
-
-  # Method for reading the json file
-  def read_json(filename)
-    json_file_config = File.read("#{filename}")
-    @parse_json_config = JSON.parse(json_file_config)
+  # Method for install
+  def install
+    console_header_print
+    puts @HEADER.black.on_green.blink;
+    puts "⚠ Press ctrl-C when you get bored\n".yellow
+    puts "[ Dependency installer ]".black.on_green.blink
+    puts "→ Starting. Wait ...".cyan
+    system_commands("gem install bundler")
+    system_commands("npm install")
+    puts "\n✔ Finished installation process!\n".green
   end
 
 
 
 
-
-
-
-
-  # Changes the url for production, that is, when starting the server.
-  def url_serve
-    if not File.exist?(CONFIG['urlWebsite'])
-      puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
-      exit
-    end
-    read_json(CONFIG['urlWebsite'])
-    url = @parse_json_config['website']['url']
-    baseurl = @parse_json_config['website']['baseurl']
-    if not File.exist?(CONFIG['gulpConfig'])
-      puts "✖ [ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
-      exit
-    end
-    read_json(CONFIG['gulpConfig'])
-    port = @parse_json_config['browserSync']['port']
-
-    config_yml = File.read("./_config.yml")
-    config_yml.gsub!("url: \"#{url}\"", "url: \"http://localhost:#{port}\"")
-    config_yml.gsub!("baseurl: \"#{baseurl}\"", "baseurl: \"\"")
-    File.write("./_config.yml", config_yml)
+  # Method clears all compiled files, production dependencies and git repository
+  def clean_all
+    verifyOS
+    system_commands("rm -rf .git Gemfile.lock _gems _site")
   end
-
-  # Change the url to build, that is, to perform deploy on the hosting server.
-  def url_build
-    if not File.exist?(CONFIG['urlWebsite'])
-      puts "✖ [ERROR] The file 'url.json' not exist. Aborted!".red
-      exit
-    end
-    read_json(CONFIG['urlWebsite'])
-    url = @parse_json_config['website']['url']
-    baseurl = @parse_json_config['website']['baseurl']
-    if not File.exist?(CONFIG['gulpConfig'])
-      puts "[ERROR] The file 'lib/json/gulp.json' not exist. Aborted!".red
-      exit
-    end
-    read_json(CONFIG['gulpConfig'])
-    port = @parse_json_config['browserSync']['port']
-
-    config_yml = File.read("./_config.yml")
-    config_yml.gsub!("url: \"http://localhost:#{port}\"", "url: \"#{url}\"")
-    config_yml.gsub!("baseurl: \"\"", "baseurl: \"#{baseurl}\"")
-    File.write("./_config.yml", config_yml)
-  end
-
-
-
-
-
-
-
-
-  # Commands system
-  def system_commands(cmd)
-    begin
-      system(cmd)
-    rescue Interrupt => e
-      puts "\n⚠ Operation aborted!".yellow
-    end
-  end
-
-
-
-def install
-  console_header_print
-  puts @HEADER.black.on_green.blink;
-  puts "⚠ Press ctrl-C when you get bored\n".yellow
-  puts "[ Dependency installer ]".black.on_green.blink
-  puts "→ Starting.Wait ...".cyan
-  system("gem install bundle")
-  system("bundle install")
-  puts "\n✔ Finished installation process!\n".green
-end
-
-
-
-
-  # Method for print version
-  def version
-    puts "Script version: #{VERSION}".cyan
-  end
-
-
-
-
-
-
-
-
-  # Method for test
-  def test_
-    puts "Hey, little flower, you did an insignificant test.".cyan
-  end
-
-
-
-
-
-
-
-
 
 end # end class 'main'

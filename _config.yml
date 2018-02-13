@@ -17,24 +17,24 @@
 # Settings for the plugins in the _plugins folder.
 plugin:
   imager:
-    dir_posts: assets/images/posts
+    dir_posts:                  assets/images/posts
   # To see language support, go to the plugin "_plugins/reading_time.rb"
   reading_time:
-    locale: en_US
+    locale:                     en_US
   # To see language support, go to the plugin "_plugins/datelang.rb"
   datelang:
-    locale: en_US
-    reload: true
+    locale:                     en_US
+    reload:                     true
   # Value for the 'hellopage_setting' plugin
   hellopage:
-    enable: true
+    enable:                     true
 
 # Settings to share the post on the social networks below.
 share:
-  facebook: true
-  linkedin: true
-  twitter: true
-  googleplus: true
+  facebook:                     true
+  linkedin:                     true
+  twitter:                      true
+  googleplus:                   true
 
 
 
@@ -42,15 +42,15 @@ share:
 # __________________________________________________________________________________________________________
 
 # Automatic URL and BASEURL, not CHANGE!!!
-# You should change in the file 'url.json'.
-url: "http://localhost:3000"
+# You should change in the file 'config/config.json', block "website =>" and "website => baseurl".
+url: "http://localhost:3010"
 baseurl: ""
 
 # Settings Default
-include: ['_pages','_blog']
-markdown: kramdown
-highlighter: pygments
-permalink: /blog/:title/
+include:                        ['_pages','_blog']
+markdown:                       kramdown
+highlighter:                    pygments
+permalink:                      /blog/:title/
 
 # Collections
 collections:
@@ -63,29 +63,29 @@ jekyll-archives:
     - categories
     - tags
   layouts:
-    category: archive_category
-    tag: archive_tag
+    category:                  archive_category
+    tag:                       archive_tag
   permalinks:
-    category: '/blog/category/:name/'
-    tag: '/blog/tags/:name/'
+    category:                  '/blog/category/:name/'
+    tag:                       '/blog/tags/:name/'
 
 # Keeping static files
-keep_files: [images]
+keep_files:                    [images]
 
 # Build local / Server
-destination: _site
+destination:                   _site
 
 # Config SASS
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir:                    _sass
+  style:                       compressed
 
 # Config for Compress HTML
 compress_html:
-  clippings: all
-  comments: all
-  endings: []
-  profile: false
+  clippings:                   all
+  comments:                    all
+  endings:                     []
+  profile:                     false
 
 # Exclude files (or folders) in compilation.
 exclude:
@@ -94,13 +94,14 @@ exclude:
   - lib
   - backup
   - deploy
+  - package-lock.json
   - src
   - Gemfile
   - Gemfile.lock
   - CHANGELOG
   - LICENSE.txt
   - package.json
-  - gulpfile.js
+  - gulpfile.babel.js
   - COPYING
   - "**/*.txt"
   - README.txt

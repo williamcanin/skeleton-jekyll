@@ -1,0 +1,22 @@
+{
+  "website":{
+    "url": "https://williamcanin.me",
+    "baseurl": ""
+  },
+  "deploy":{
+    "github":{
+      "config": {
+        "remoteURL": "git@github.com:williamcanin/skeleton-jekyll.git",
+        "commit": "Update",
+        "pull": "no"
+      }
+    },
+    "branch": {
+      "source": "master",
+      "built": "gh-pages"
+    },
+    "compile":{
+      "built": "yes"
+    }
+  }
+}

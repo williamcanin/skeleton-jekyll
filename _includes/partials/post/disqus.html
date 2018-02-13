@@ -1,5 +1,5 @@
     <section class="disqus" id="comments">
-    {% if page.comments and loadData.userdata.disqus.username %}
+    {% if jekyll.environment == 'production' and page.comments and loadData.userdata.disqus.username %}
       <div class="title">
         <h3>&nbsp;{{ loadData.website.post.comments.title }}</h3>
       </div>

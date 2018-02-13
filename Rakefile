@@ -5,11 +5,13 @@
 
 require "./lib/rb/utils/version.rb"
 require "./lib/rb/utils/variables.rb"
+require "./lib/rb/utils/utilities.rb"
+require "./lib/rb/utils/console_print.rb"
 require "./lib/rb/utils/header_pr.rb"
 require "./lib/rb/utils/header_pa.rb"
 require "./lib/rb/utils/header_po.rb"
+require "./lib/rb/utils/deploy.rb"
 require "./lib/rb/utils/credits.rb"
-require "./lib/rb/utils/console_print.rb"
 require './lib/rb/main.rb'
 
 
@@ -43,20 +45,20 @@ namespace :post do
   end
 end
 
-# Changes the url for production, that is, when starting the server.
-# Note: This task is used for Gulp and not for individual execution.
-desc "This task is used for Gulp and not for individual execution."
-task :url_serve  do
-  main.url_serve
-end
-
-# Change the url to build, that is, to perform deploy on the hosting server.
-# Note: This task is used for Gulp and not for individual execution.
-desc "This task is used for Gulp and not for individual execution."
-task :url_build  do
-  main.url_build
-end
+# # Changes the url for production, that is, when starting the server.
+# # Note: This task is used for Gulp and not for individual execution.
+# desc "This task is used for Gulp and not for individual execution."
+# task :url_serve  do
+#   main.url_serve
+# end
 #
+# # Change the url to build, that is, to perform deploy on the hosting server.
+# # Note: This task is used for Gulp and not for individual execution.
+# desc "This task is used for Gulp and not for individual execution."
+# task :url_build  do
+#   main.url_build
+# end
+# #
 #  ---------------------------------------------------------------------------------------
 
 
@@ -104,10 +106,35 @@ task :help  do
   main.console_content_print
 end
 
+# Task init deploy for source
+desc "Starts deploy to GitHub from source code (Linux or OSX)."
+namespace :deploy do
+  task :source do
+    main.deploySource
+  end
+end
+
+# Task init deploy for gh-pages in Github
+desc "Starts deploy to GitHub from compiled website (Linux or OSX)."
+namespace :deploy do
+  task :site do
+    main.deploySite
+  end
+end
+
+# Task clears all compiled files, production dependencies and git repository
+desc "Clears all compiled files, production dependencies and git repository (Linux or OSX)."
+namespace :clean do
+  task :all do
+    main.clean_all
+  end
+end
+
 # Task test
 desc "This is something so insignificant ...."
 task :test  do
-  main.test_
+  main.verifyOS
+  p "This is something so insignificant ...."
 end
 #
 # -----------------------------------------------------------

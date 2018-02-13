@@ -1,7 +1,7 @@
 <!-- Google Analytics Universal
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-{% if loadData.website.google.analytics.enable == true and loadData.website.google.analytics.id %}
+{% if jekyll.environment == 'production' and loadData.website.google.analytics.enable == true and loadData.website.google.analytics.id %}
 
   <script>
 
