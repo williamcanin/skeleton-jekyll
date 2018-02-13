@@ -42,7 +42,7 @@ share:
 # __________________________________________________________________________________________________________
 
 # Automatic URL and BASEURL, not CHANGE!!!
-# You should change in the file 'config/config.json', block "website =>" and "website => baseurl".
+# You should change in the file 'config/config.json', block "website => url" and "website => baseurl".
 url: "http://localhost:3010"
 baseurl: ""
 
