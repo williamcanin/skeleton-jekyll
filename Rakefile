@@ -78,8 +78,8 @@ task :build  do
 end
 
 desc "Starts the server for project production in the browser."
-task :serve  do
-  main.system_commands("$(npm bin)/gulp serve")
+task :dev  do
+  main.system_commands("$(npm bin)/gulp dev")
 end
 #
 # ------------------------------------------------------------

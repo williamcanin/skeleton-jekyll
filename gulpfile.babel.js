@@ -149,13 +149,14 @@ function scripts() {
 
 // Define complex tasks
 let js = series(jslint, scripts);
-let build = series(clean, parallel(style, images, js, jekyll_build));
+let build = series(clean, parallel(/* style, */ images, js, jekyll_build));
 let dev = parallel(jekyll_build, server, watchfiles);
 // let dev = parallel(jekyll_build, server, server_reload, watchfiles);
 
 // export tasks
 exports.clean = clean;
-exports.style = style;
+// // If you do not use the jekyll _sass folder, uncomment this option.
+// exports.style = style;
 exports.js = js;
 exports.images = images;
 exports.build = build;
