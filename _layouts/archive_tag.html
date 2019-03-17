@@ -24,23 +24,23 @@ ___________________________________________ -->
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     {% include partials/nav/blog.html %}
 
-    <section class="archive" itemscope="itemscope" itemtype="http://schema.org/Blog">
+    <section class="archive-tag" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-      <div class="details">
+      <div class="archive-tag__details">
 
       <h1>Tag: {{ page.title }}</h1>
 
       {% for post in page.posts %}
         <!-- Meta
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <div class="meta">
-          <time class="datetime" itemprop="datePublished" datetime="{{ post.date | date:'%Y-%m-%d' }}">
+        <div class="archive-tag__meta">
+          <time class="archive-tag__datetime" itemprop="datePublished" datetime="{{ post.date | date:'%Y-%m-%d' }}">
             {{ post.date | date_to_string }}
           </time>
         </div>
         <!-- Content
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <div class="content">
+        <div class="archive-tag__content">
           <h1>
             <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
           </h1>

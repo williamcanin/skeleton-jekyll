@@ -30,7 +30,7 @@ ___________________________________________ -->
     <section class="tags" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
 
-      <div style="margin: 10px 0px;" class="content">
+      <div class="tags__content" style="margin: 10px 0px;">
         {% for tag in site.tags %}
             <a style="padding: 5px; background-color: #c1c1c1;" href="{{ '/blog/tags' | prepend: site.baseurl | prepend: site.url }}/{{ tag[0] | slugify }}"> {{ tag[0] }}</a>
         {% endfor %}

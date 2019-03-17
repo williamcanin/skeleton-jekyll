@@ -1,14 +1,14 @@
     <section class="author" itemprop="author">
       {% if loadData.website.post.author.image %}
-      <div class="details" itemscope itemtype="http://schema.org/Person">
-        <div class="image">
-          <img class="" itemprop="image" src="{{ '/assets/images/author' | prepend: site.baseurl | prepend: site.url }}/{{ loadData.website.post.author.image }}" alt="">
+      <div class="author__details" itemscope itemtype="http://schema.org/Person">
+        <div class="author__image">
+          <img itemprop="image" src="{{ '/assets/images/author' | prepend: site.baseurl | prepend: site.url }}/{{ loadData.website.post.author.image }}" alt="">
         </div>
         {% endif %}
-        <div class="bio">
-          <p class="title" itemprop="title">{{ loadData.website.post.author.title }}</p>
-          <p class="name" itemprop="name">{{ loadData.website.post.author.name }}</p>
-          <p class="content">{{ loadData.website.post.author.bio }}</p>
+        <div class="author__bio">
+          <p class="author__title" itemprop="title">{{ loadData.website.post.author.title }}</p>
+          <p class="author__name" itemprop="name">{{ loadData.website.post.author.name }}</p>
+          <p class="author__content">{{ loadData.website.post.author.bio }}</p>
         </div>
       </div>
     </section>

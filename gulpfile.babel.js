@@ -1,126 +1,162 @@
-/*
-File: gulpfile.babel.js
-Description: Script for tasks in Gulp (using ES6)
-License: MIT
------------------------------------------------------------
-Author: William Canin
------------------------------------------------------------
-*/
+"use strict";
 
-/* Note: Due to a bug, the use of ES6 and Babel must be version 3.9.0 of Gulp.*/
-
-/* LOAD PLUGINS
-______________________________________________________________________________________ */
-
-    import gulp from 'gulp'; // v3.9.0
-    import jshint from 'gulp-jshint';
-    import uglify from 'gulp-uglify';
-    import rename from 'gulp-rename';
-    import babel from 'gulp-babel';
-    import imagemin from 'gulp-imagemin';
-    import cp from 'child_process';
-    import {create as bsCreate} from 'browser-sync';
-    import taskListing from 'gulp-task-listing';
-    // import configs for gulp
-    import configs from './lib/json/gulp.json';
-
-/* VARIABLES FILES AND DIRECTORYS
-______________________________________________________________________________________ */
-
-    // Const browser sync create
-    const browserSync = bsCreate();
-
-/* COMPRESS JAVASCRIPTS
-______________________________________________________________________________________ */
-
-    gulp.task('javascripts', () => {
-      return gulp.src(configs.sources.js.files)
-        .pipe(jshint())
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(babel({
-          presets: ['env']
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest(configs.assets.javascripts.dir+'/'))
-    });
-
-/* IMAGE MINIFY
-______________________________________________________________________________________ */
-
-    gulp.task('imagemin', () => {
-      return gulp.src(configs.assets.images.files)
-        .pipe(imagemin({ optimizationLevel: 5 }))
-        .pipe(gulp.dest(configs.assets.images.dir+'/'))
-    });
-
-/* JEKYLL BUILD/PRODUCTION AND REBUILD
-______________________________________________________________________________________ */
-    let build_options = {stdio: 'inherit'};
-    const env = Object.create(process.env);
-    env.JEKYLL_ENV = 'production';
-    build_options.env = env;
-
-    gulp.task('jekyll-production', (done) => {
-      return cp.spawn('bundle', ['exec','jekyll','build'], build_options)
-        .on('close', done);
-    });
-
-    gulp.task('jekyll-build', (done) => {
-      return cp.spawn('bundle', ['exec','jekyll','build'], {stdio: 'inherit'})
-        .on('close', done);
-    });
-
-    gulp.task('jekyll-rebuild', ['jekyll-build'], () => {
-      return browserSync.reload();
-    });
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import sass from 'gulp-sass';
+import { src, dest, series, parallel, watch } from 'gulp';
+import rename from 'gulp-rename';
+import uglify from 'gulp-uglify';
+import {spawn} from 'child_process';
+import plumber from 'gulp-plumber';
+import eslint from 'gulp-eslint';
+import del from 'del';
+import imagemin from 'gulp-imagemin';
+import browserSync from 'browser-sync';
 
 
-/* JEKYLL SERVE [DEPRECATED]
-______________________________________________________________________________________ */
-// Note: The Jekyll watch function is being disabled. The watch will be monitored by the Gulp task
+// Configuration and variables global.
+// import fs from 'fs';
+// let configs = JSON.parse(fs.readFileSync('./lib/json/gulp.json'));
+let bsCreate = browserSync.create();
+let configs = {
+  gulpfile: 'gulpfile.babel.js',
+  watch: [
+    // Folder _pages/**/*.md is in trouble
+    '_config.yml',
+    '_layouts/**/*.html',
+    '_includes/**/*.html',
+    '_data/**/*.yml',
+    '_blog/**/*.html',
+    '_sass/**/*.scss',
+    'src/js/**/*.js'
+  ],
+  server: {
+    dir: './_site/',
+    port: '3010'
+  },
+  src:{
+    js:{
+      files: './src/js/**/*.js'
+    },
+    scss:{
+      default: './scss/style.scss',
+      files: './scss/**/*.scss'
+    }
+  },
+  assets:{
+    js:{
+      files: './assets/js/*',
+      dir: './assets/js/'
+    },
+    css:{
+      dir: './assets/css/'
+    },
+    images:{
+      dir: './assets/images/',
+      files: './assets/images/**/*'
+    }
+  }
+};
 
-    // gulp.task('jekyll-serve', (done) => {
-    //   return cp.spawn('bundle', ['exec','jekyll','serve', '--no-watch'/*,'--incremental'*/], {stdio: 'inherit'})
-    //    .on('close', done);
-    // });
+// Cleans
+function clean() {
+  return del([configs.assets.js.files]);
+}
 
-/* CHANGE URL FOR PRODUCTION AND BUILD
-______________________________________________________________________________________ */
+// SASS / CSS 
+// // If you do not use the jekyll _sass folder, uncomment this option.
+// function style() {
+//   return src(configs.src.scss.default)
+//     .pipe(plumber())
+//     .pipe(sass({ outputStyle: "expanded" }))
+//     .pipe(dest(configs.assets.css.dir))
+//     .pipe(rename({ suffix: ".min" }))
+//     .pipe(postcss([autoprefixer(), cssnano()]))
+//     .pipe(dest(configs.assets.css.dir))
+//     .pipe(bsCreate.stream());
+// }
 
-    gulp.task('url-serve', (done) => {
-      return cp.spawn('ruby', ['lib/rb/runtime/url_server.rb'], {stdio: 'inherit'})
-        .on('close', done);
-    });
+// BrowserSync
+function server(done) {
+  bsCreate.init({
+    server: {
+      baseDir: configs.server.dir
+    },
+    port: configs.server.port
+  });
+  done();
+}
 
-    gulp.task('url-build', (done) => {
-      return cp.spawn('ruby', ['lib/rb/runtime/url_build.rb'], {stdio: 'inherit'})
-        .on('close', done);
-    });
+// // BrowserSync Reload
+function server_reload(done) {
+  bsCreate.reload();
+  done();
+}
 
-/* START SERVER
-______________________________________________________________________________________ */
+// Optimize Images
+function images() {
+  return src(configs.assets.images.files)
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [
+            {
+              removeViewBox: false,
+              collapseGroups: true
+            }
+          ]
+        })
+      ])
+    )
+    .pipe(dest(configs.assets.images.dir));
+}
 
-    gulp.task('browser-sync', ['jekyll-build'], () => {
-      return  browserSync.init({
-      // reloadDelay: 2000,
-        port: configs.browserSync.port,
-        server: {
-          baseDir: configs.browserSync.baseDir
-        }
-      });
-    });
+// Jekyll build
+function jekyll_build() {
+  return spawn('bundle', ['exec','jekyll','build'], {stdio: 'inherit'});
+}
 
-/* REBUILD WHEN IS CHANGED FILES
-______________________________________________________________________________________ */
+// Watch files
+function watchfiles() {
+  // // If you do not use the jekyll _sass folder, uncomment this option.
+  // gulp.watch(configs.src.scss.files, style);
+  watch(configs.watch, series(jekyll_build, server_reload));
+}
 
-    gulp.task('watch-files', () =>{
-      return  gulp.watch(configs.watch, ['javascripts','jekyll-rebuild']);
-    });
+// Lint scripts
+function jslint() {
+  return src([configs.src.js.files, configs.gulpfile])
+    .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+}
 
+// Scripts
+function scripts() {
+  return (
+    src(configs.src.js.files)
+    .pipe(plumber())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(uglify())
+    .pipe(dest(configs.assets.js.dir))
+  );
+}
 
-/* TASKS DEFAULTS
-______________________________________________________________________________________ */
+// Define complex tasks
+let js = series(jslint, scripts);
+let build = series(clean, parallel(style, images, js, jekyll_build));
+let dev = parallel(jekyll_build, server, watchfiles);
+// let dev = parallel(jekyll_build, server, server_reload, watchfiles);
 
-    gulp.task('default', taskListing.withFilters(/:/));
-    gulp.task('build', ['url-build','javascripts','imagemin','jekyll-production']);
-    gulp.task('serve', ['url-serve','javascripts','browser-sync', 'watch-files']);
+// export tasks
+exports.clean = clean;
+exports.style = style;
+exports.js = js;
+exports.images = images;
+exports.build = build;
+exports.dev = dev;

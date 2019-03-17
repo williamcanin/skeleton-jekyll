@@ -29,12 +29,12 @@ ___________________________________________ -->
 
     <section class="category" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
-      <div class="content">
+      <div class="category__content">
         {% assign categories = site.categories | sort %}
         <ul>
         {% for category in categories %}
           <li>
-            <a class="category-link" href="/blog/category/{{ category | first | downcase | slugify }}">{{ category | first }}</a>
+            <a class="category__link" href="/blog/category/{{ category | first | downcase | slugify }}">{{ category | first }}</a>
           </li>
         {% endfor %}
         </ul>

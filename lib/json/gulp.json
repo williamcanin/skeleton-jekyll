@@ -4,28 +4,28 @@
       "target": "http://localhost"
     },
     "port": "3010",
-    "baseDir": "_site"
+    "baseDir": "./_site/"
   },
   "watch":[
     "_config.yml",
-    "./index.md",
-    "./_layouts/**/*.html",
-    "./_posts/**/*.md",
-    "./_pages/**/*.md",
-    "./_includes/**/*.html",
-    "./_projects/**/*.md",
-    "./_data/**/*.yml",
-    "./gulpfile.js",
-    "./blog/**/*.html",
-    "./*.md",
-    "./*.xml",
+    "index.md",
+    "_layouts/**/*.html",
+    "_posts/**/*.md",
+    "_includes/**/*.html",
+    "_projects/**/*.md",
+    "_data/**/*.yml",
+    "_blog/**/*.html",
     "_sass/**/*.scss",
-    "./src/js/**/*.js"
+    "src/js/**/*.js"
   ],
   "sources":{
     "js":{
       "dir": "./src/js",
       "files": "./src/js/**/*.js"
+    },
+    "scss":{
+      "dir": "./_sass",
+      "files": "./_sass/**/*.scss"
     }
   },
   "assets":{

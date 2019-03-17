@@ -1,13 +1,13 @@
     <section class="disqus" id="comments">
     {% if jekyll.environment == 'production' and page.comments and loadData.userdata.disqus.username %}
-      <div class="title">
+      <div class="disqus__title">
         <h3>&nbsp;{{ loadData.website.post.comments.title }}</h3>
       </div>
-      <div class="content">
+      <div class="disqus__content">
         {% include scripts/disqus_comments.html %}
       </div>
     {% else %}
-      <div class="title">
+      <div class="disqus__title">
         <h3>&nbsp;{{ loadData.website.post.comments.disable.message }}</h3>
       </div>
     {% endif %}

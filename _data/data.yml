@@ -74,8 +74,6 @@ website:
         title: "Share on Twitter"
       linkedin:
         title: "Share on LinkedIn"
-      gplus:
-        title: "Share on Google Plus"
     comments:
       title: Leave your comment
       disable:
@@ -96,11 +94,6 @@ userdata:
         id: github
         icon: fa-github
         url: https://github.com
-
-      - title: Google Plus
-        id: google-plus
-        icon: fa-google-plus
-        url: https://plus.google.com
 
       - title: LinkedIn
         id: linkedin

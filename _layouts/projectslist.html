@@ -27,15 +27,15 @@ ___________________________________________ -->
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     {% include partials/projectslist/header.html %}
 
-    <section class="projectslist" itemscope="itemscope" itemtype="http://schema.org/Blog">
+    <section class="projects-list" itemscope="itemscope" itemtype="http://schema.org/Blog">
 
       {% for project in site.projects %}
 
-      <div class="details">
-        <div class="title">
+      <div class="projects-list__details">
+        <div class="projectslist__title">
           <h1>{{ project.title }}</h1>
         </div>
-        <div class="content">
+        <div class="projects-list__content">
           {{ project.content }}
         </div>
       </div>
