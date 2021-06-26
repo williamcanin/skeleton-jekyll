@@ -3,6 +3,7 @@ module Variables
 
   SOURCE = "."
   CONFIG = {
+    'manager' => "yarn",
     'postsDirBlog' => File.join(SOURCE, "_posts"),
     'pagesDir' => File.join(SOURCE, "_pages"),
     'projectsDir' => File.join(SOURCE, "_projects"),

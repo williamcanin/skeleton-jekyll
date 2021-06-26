@@ -195,7 +195,7 @@ class Main
     puts "[ Dependency installer ]".black.on_green.blink
     puts "→ Starting. Wait ...".cyan
     system_commands("gem install bundler colorize rake")
-    system_commands("npm install")
+    system_commands("#{CONFIG['manager']} install")
     puts "\n✔ Finished installation process!\n".green
   end
 

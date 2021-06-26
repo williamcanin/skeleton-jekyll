@@ -12,17 +12,17 @@ Author: William Canin
 /* LOAD PLUGINS
 ______________________________________________________________________________________ */
 
-    import gulp from 'gulp'; // v3.9.0
-    import jshint from 'gulp-jshint';
-    import uglify from 'gulp-uglify';
-    import rename from 'gulp-rename';
-    import babel from 'gulp-babel';
-    import imagemin from 'gulp-imagemin';
-    import cp from 'child_process';
-    import {create as bsCreate} from 'browser-sync';
-    import taskListing from 'gulp-task-listing';
+    const gulp = require('gulp');
+    const jshint = require('gulp-jshint');
+    const uglify = require( 'gulp-uglify');
+    const rename = require('gulp-rename');
+    const babel = require('gulp-babel');
+    const imagemin = require ('gulp-imagemin');
+    const cp  = require('child_process');
+    const bsCreate = require('browser-sync');
+    const taskListing = require('gulp-task-listing');
     // import configs for gulp
-    import configs from './lib/json/gulp.json';
+    const configs = require('./lib/json/gulp.json');
 
 /* VARIABLES FILES AND DIRECTORYS
 ______________________________________________________________________________________ */
@@ -38,7 +38,7 @@ ________________________________________________________________________________
         .pipe(jshint())
         .pipe(rename({ suffix: '.min' }))
         .pipe(babel({
-          presets: ['env']
+          presets: ['@babel/env']
         }))
         .pipe(uglify())
         .pipe(gulp.dest(configs.assets.javascripts.dir+'/'))

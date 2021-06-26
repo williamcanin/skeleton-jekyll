@@ -6,7 +6,8 @@ Create Jekyll layout with this full-featured skeleton.
 [ MINIMUM REQUIREMENTS ]
 
 - Git
-- Ruby
+- Ruby > 2.4
+- Yarn
 
 [ FEATURE ]
 

@@ -7,4 +7,6 @@ backup/
 Gemfile.lock
 package-lock.json
 _plugins/.idea
+.jekyll-cache/
+/**/*.bak
 /temp/

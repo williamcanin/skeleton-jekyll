@@ -12,6 +12,7 @@ gem 'rake'
 gem 'pygments.rb'
 gem 'colorize'
 gem 'json'
+gem 'webrick'
 gem 'bigdecimal'
 group :jekyll_plugins do
   gem 'jekyll-archives'
